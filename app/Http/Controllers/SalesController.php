@@ -199,12 +199,14 @@ class SalesController extends Controller
             $idsales = $this->model->createID($namasales);
 
             $salesWilayah = array();
-            for ($i = 0; $i < count($idwilayah); $i++) {
-
-                $salesWilayah[] = array(
-                    'idsales' => $idsales,
-                    'idwilayah' => $idwilayah[$i],
-                );
+            if ($idwilayah) {
+                for ($i = 0; $i < count($idwilayah); $i++) {
+    
+                    $salesWilayah[] = array(
+                        'idsales' => $idsales,
+                        'idwilayah' => $idwilayah[$i],
+                    );
+                }
             }
 
             $data = array(

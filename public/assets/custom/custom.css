@@ -63,15 +63,16 @@ table.dataTable tbody td {
 }
 
 .main-header {
-    background: linear-gradient(
+    /* background: linear-gradient(
         128deg,
         rgba(0, 0, 0, 0.9444152661064426) 50%,
         #f4f6f9 80%
-    );
+    ); */
+    background-color: #ffffff;
 }
 
 .main-sidebar {
-    background: linear-gradient(128deg, #018fd3 19%, #fed26f 77%);
+    background: linear-gradient(128deg, #2d2d2d 19%, #444444 77%);
 }
 
 .brand-link {
@@ -80,13 +81,13 @@ table.dataTable tbody td {
         rgba(0, 0, 0, 0.9444152661064426) 19%,
         rgba(21, 117, 144, 1) 77%
     ); */
-    background-color: #018fd3;
+    background-color: #000000;
 }
 
 /* .main-sidebar { background-color: #3D99B4 !important } */
 
 .nav-link {
-    color: black !important;
+    color: #b4b4b4 !important;
 }
 .nav-item .active {
     color: #f3f2f2 !important;
@@ -96,6 +97,10 @@ table.dataTable tbody td {
 }
 .nav-item .active {
     color: #f5f4f4 !important;
+}
+
+.content-wrapper {
+    background-color: #cecece;
 }
 
 /* .batas-menu {
