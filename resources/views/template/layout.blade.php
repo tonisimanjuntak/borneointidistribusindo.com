@@ -162,6 +162,9 @@
                 text: errorMessage
             });
         });
+
+
+        
     </script>
 
     @yield('scripts')
@@ -826,6 +829,47 @@
         function formatBarangSelection(barang) {
             return barang.text; // Hanya tampilkan nama barang saat dipilih
         }
+
+
+        function sinces(dateString) {
+            // Ganti spasi dengan 'T' agar dapat di-parse sebagai Date
+            const date = new Date(dateString.replace(' ', 'T'));
+
+            // Pastikan tanggal valid
+            if (isNaN(date.getTime())) {
+                return "Tanggal tidak valid";
+            }
+
+            const now = new Date(); // Waktu saat ini
+            const diffMs = now - date; // Selisih dalam milidetik
+
+            // Konversi milidetik ke detik, menit, jam, hari, bulan, dan tahun
+            const diffSec = Math.floor(diffMs / 1000); // Detik
+            const diffMin = Math.floor(diffSec / 60); // Menit
+            const diffHour = Math.floor(diffMin / 60); // Jam
+            const diffDays = Math.floor(diffHour / 24); // Hari
+            const diffMonths = Math.floor(diffDays / 30); // Bulan (perkiraan)
+            const diffYears = Math.floor(diffDays / 365); // Tahun (perkiraan)
+
+            // Tentukan output berdasarkan lamanya waktu
+            if (diffYears > 0) {
+                return `${diffYears} tahun yang lalu`;
+            } else if (diffMonths > 0) {
+                return `${diffMonths} bulan yang lalu`;
+            } else if (diffDays > 0) {
+                return `${diffDays} hari yang lalu`;
+            } else if (diffHour > 0) {
+                return `${diffHour} jam yang lalu`;
+            } else if (diffMin > 0) {
+                return `${diffMin} menit yang lalu`;
+            } else if (diffSec > 0) {
+                return `${diffSec} detik yang lalu`;
+            } else {
+                return "Baru saja";
+            }
+        }
+
+
     </script>
 </body>
 

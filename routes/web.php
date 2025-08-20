@@ -71,8 +71,12 @@ use App\Models\Kategoribarang;
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index')->name('home');
+    Route::get('home/lihatRiwayatAktifitas', 'lihatRiwayatAktifitas');
     Route::get('home/getInfoBox', 'getInfoBox');
     Route::get('home/getInfoGrafikPenjualan', 'getInfoGrafikPenjualan');    
+    Route::get('home/loadRiwayatAktifitas', 'loadRiwayatAktifitas');    
+    Route::get('home/listdatariwayataktifitas', 'listdatariwayataktifitas')->name('home.listdatariwayataktifitas');
+    Route::get('home/cetakriwayataktifitas/{tglawal}/{tglakhir}', 'cetakriwayataktifitas');            
 });
 
 
