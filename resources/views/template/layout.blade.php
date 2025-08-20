@@ -32,6 +32,22 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('') }}assets/custom/custom.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/css/bootstrap3/bootstrap-switch.min.css">
+
+    <style>
+
+        
+        .loader {
+			position: fixed;
+			left: 0px;
+			top: 0px;
+			width: 50%;
+			height: 50%;
+			z-index: 9999;
+			background: url("{{ asset('images/Loading.gif') }}") 100% 100% no-repeat;
+		}
+
+
+    </style>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -57,6 +73,7 @@
 
     </div>
 
+    <div class="loader"></div>
 
 
     <!-- jQuery -->
@@ -109,11 +126,43 @@
     </script>
     @endif
 
+    @if (session('error'))
+    <script>
+        swal("Upps!", "{{ session('error') }}", "error");
+    </script>
+    @endif
 
 
 
+    <script>
+        // 🔥 ON AJAX START: Tampilkan loading saat AJAX dimulai
+        $(document).ajaxStart(function() {
+            $('.loader').show();
+            // Nonaktifkan semua tombol submit agar tidak double klik
+            $('button[type="submit"]').prop('disabled', true);
+        });
 
+        // 🔥 ON AJAX STOP: Sembunyikan loading saat semua AJAX selesai
+        $(document).ajaxStop(function() {
+            $('.loader').hide();
+            // Aktifkan kembali tombol submit
+            $('button[type="submit"]').prop('disabled', false);
+        });
 
+        // 🔥 ON AJAX ERROR (Opsional): Tampilkan error umum
+        $(document).ajaxError(function(event, xhr, options, error) {
+            let errorMessage = 'Terjadi kesalahan pada permintaan.';
+            if (xhr.responseJSON && xhr.responseJSON.message) {
+                errorMessage = xhr.responseJSON.message;
+            }
+
+            swal({
+                icon: 'error',
+                title: 'Error!',
+                text: errorMessage
+            });
+        });
+    </script>
 
     @yield('scripts')
 
