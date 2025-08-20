@@ -46,7 +46,7 @@
 									</p> --}}
 								</div>
 			      	</div>
-							<form action="{{ url('login') }}" class="signin-form" method="POST">
+							<form action="{{ url('login') }}" class="signin-form" id="form" method="POST">
                                 @csrf
 			      		<div class="form-group mb-3">
 			      			<label class="label" for="username">Username</label>
@@ -87,6 +87,83 @@
 
     <!-- sweet Alert -->
     <script src="{{ asset('') }}assets/sweetalert/sweetalert.min.js"></script>
+
+
+	<script>
+        $(document).ready(function () {
+            $('#form').on('submit', function (e) {
+                e.preventDefault(); // Cegah reload halaman
+
+                // Tampilkan loading atau disable button
+                const submitBtn = $(this).find('button[type="submit"]');
+                const originalText = submitBtn.html();
+                submitBtn.html('<i class="fa fa-spinner fa-spin mr-2"></i> Loading...').prop('disabled', true);
+
+                $.ajax({
+                    url: "{{ url('login') }}",
+                    method: "POST",
+                    data: $(this).serialize(), // Ambil semua data form
+                    dataType: "json",
+                    success: function (response) {
+
+                        if (response.success) {
+                            submitBtn.html('<i class="fa fa-spinner fa-spin mr-2"></i> Loading menu pengguna...');
+
+                            $.ajax({
+                                url: "{{ url('login/loadMenus') }}",
+                                type: 'GET',
+                                dataType: 'json',
+                            })
+                            .done(function(response) {
+                                console.log(response);
+                                window.location.href = "{{ url('/') }}";
+
+                                // swal({
+                                //     icon: 'success',
+                                //     title: 'Berhasil!',
+                                //     text: "Login berhasil, redirecting...",
+                                //     timer: 2000,
+                                //     showConfirmButton: false
+                                // }).then(() => {
+                                //     window.location.href = "{{ url('/') }}";
+                                // });
+                            })
+                            .fail(function() {
+                                console.log('error loadMenus');
+                            });
+
+                            
+
+                        } else {
+                            submitBtn.html(originalText).prop('disabled', false);
+
+                            swal("Gagal!", response.message || "Username atau password salah.", "error")
+                                .then(() => {
+                                    $('#username').focus();
+                                });
+                        }
+                    },
+                    error: function (xhr) {
+                        submitBtn.html(originalText).prop('disabled', false);
+                        let message = "Terjadi kesalahan.";
+
+                        if (xhr.status === 422) {
+                            // Validasi error
+                            const errors = xhr.responseJSON.errors;
+                            message = Object.values(errors).flat().join("<br>");
+                        } else if (xhr.responseJSON && xhr.responseJSON.message) {
+                            message = xhr.responseJSON.message;
+                        }
+
+                        swal("Error!", message, "error")
+                            .then(() => {
+                                $('#username').focus();
+                            });
+                    }
+                });
+            });
+        });
+    </script>
 
     @if (session('message'))
     <script>

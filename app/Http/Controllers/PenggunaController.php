@@ -69,6 +69,8 @@ class PenggunaController extends Controller
         // Query dasar
         $query = Pengguna::select(['idpengguna', 'namapengguna', 'namaotorisasi', 'lastlogin', 'statusaktif', 'jeniskelamin', 'notelppengguna', 'emailpengguna', 'fotopengguna', 'username']);
 
+        $query->where('idpengguna', '!=', '9999999999');
+
         if ($request->has('statusFilter') && $request->input('statusFilter') != 'Semua') {
             $status = $request->input('statusFilter');
             $query->where('statusaktif', $status);
@@ -332,5 +334,86 @@ class PenggunaController extends Controller
             ];
         });
         return response()->json(['results' => $formattedResults]);
+    }
+
+
+    public function simpanotorisasi(Request $request)
+    {
+        $idpengguna = $request->input('idpengguna');
+        $idmenus = $request->input('idmenus');
+
+        // HAPUS atau KOMENTARI baris ini:
+        // return response()->json($idmenus);  // ←← HAPUS SAAT PRODUKSI
+
+        $dataOtorisasi = array();
+
+        for ($i = 0; $i < count($idmenus); $i++) {
+            $hakaksi = '';
+            $idmenus_otorisasi = $idmenus[$i];
+
+            $Lihat = $request->input('Lihat' . $idmenus_otorisasi);
+            $Tambah = $request->input('Tambah' . $idmenus_otorisasi);
+            $Edit = $request->input('Edit' . $idmenus_otorisasi);
+            $Hapus = $request->input('Hapus' . $idmenus_otorisasi);
+
+            // Hanya simpan jika bisa "Lihat"
+            if ($Lihat) {
+                $hakaksi .= 'Lihat,';
+
+                if ($Tambah) {
+                    $hakaksi .= 'Tambah,';
+                }
+
+                if ($Edit) {
+                    $hakaksi .= 'Edit,';
+                }
+
+                if ($Hapus) {
+                    $hakaksi .= 'Hapus,';
+                }
+
+                // Hilangkan koma terakhir
+                $hakaksi = rtrim($hakaksi, ',');
+
+                $dataOtorisasi[] = [
+                    'idpengguna' => $idpengguna,
+                    'idmenus' => $idmenus[$i],
+                    'hakaksi' => $hakaksi,
+                ];
+            }
+        }
+
+        // $rsMenuSystem = $this->model->getMenusSystem();
+        // foreach ($rsMenuSystem as $row) {
+        //     $dataOtorisasi[] = [
+        //             'idpengguna' => $idpengguna,
+        //             'idmenus' => $row->idmenus,
+        //             'hakaksi' => 'Lihat',
+        //         ];
+        // }
+
+        // Simpan ke database
+        $simpan = $this->model->simpanotorisasi($idpengguna, $dataOtorisasi);
+
+        if ($simpan['status'] == 'success') {
+            return response()->json([
+                'status' => 'success',
+                'message' => $simpan['message'] . ' Otorisasi ini akan berlaku setelah pengguna logout.'
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Data gagal disimpan! Error: ' . $simpan['message']
+            ], 500);
+        }
+    }
+
+    public function getOtorisasi(Request $request)
+    {
+        $idpengguna = $request->input('idpengguna');
+
+        $rsOtorisasi = $this->model->getOtorisasi($idpengguna);
+
+        return response()->json($rsOtorisasi);
     }
 }

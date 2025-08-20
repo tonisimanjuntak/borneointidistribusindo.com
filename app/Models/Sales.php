@@ -74,10 +74,6 @@ class Sales extends Model
     {
         try {
 
-            DB::table('saleswilayah')
-                ->where('idsales', $idsales)
-                ->delete();
-
             DB::table('sales')
                 ->where('idsales', $idsales)
                 ->delete();
