@@ -58,7 +58,7 @@ class LoginController extends Controller
             $dataLogin = array(
                 'lastlogin' => date('Y-m-d H:i:s'),
             );
-            $this->PenggunaModel->updateData($dataLogin, $user->idpengguna);
+            $this->LoginModel->updateData($dataLogin, $user->idpengguna, 'login');
 
             // return redirect()->intended('/');
             return response()->json(['success' => true]);
@@ -69,6 +69,11 @@ class LoginController extends Controller
 
     public function logout()
     {
+        $dataLogin = array(
+                'lastlogin' => date('Y-m-d H:i:s'),
+            );
+        
+        $this->LoginModel->updateData($dataLogin, session('idpengguna'), 'logout');
         Session::flush();
         return redirect('/login');
     }

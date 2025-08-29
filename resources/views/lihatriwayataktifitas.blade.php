@@ -60,8 +60,9 @@
                                     <table class="table table-bordered" id="tableList">
                                         <thead class="">
                                             <tr>
+                                                <th style="width: 5%; text-align: center;">No</th>
                                                 <th style="width: 15%; text-align: center;">Tanggal</th>
-                                                <th style="width: 40%; text-align: center;">Deskripsi</th>
+                                                <th style="width: 35%; text-align: center;">Deskripsi</th>
                                                 <th style="width: 15%; text-align: center;">Aktifitas</th>
                                                 <th style="width: 15%; text-align: center;">Nama Table</th>
                                                 <th style="width: 15%; text-align: center;">Nama Pengguna</th>
@@ -103,6 +104,13 @@
                 [10, 25, 50, 100]
             ], // Opsi jumlah data per halaman
             columns: [{
+                    data: 'no',
+                    name: 'no',
+                    className: 'dt-body-center',
+                    orderable: false,
+                    searchable: false
+                },
+                {
                     data: 'inserted_date',
                     name: 'inserted_date',
                     className: 'dt-body-center',

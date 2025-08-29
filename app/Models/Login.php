@@ -6,10 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
+use App\Models\App;
+
 
 class Login extends Model
 {
     use HasFactory;
+    var $App;
+
+    public function __construct()
+    {
+        $this->App = new App;
+    }
 
     public function getMenus($idpengguna)
     {
@@ -94,5 +102,24 @@ class Login extends Model
         }
 
         return $tree;
+    }
+
+    public function updateData($data, $idpengguna, $aksi)
+    {
+        try {
+
+            DB::table('pengguna')
+                ->where('idpengguna', $idpengguna)
+                ->update($data);
+
+
+            $this->App->riwayatAktifitas($data, 'aplikasi', $aksi);
+
+            return ['status' => 'success', 'message' => "Data berhasil disimpan"];
+        } catch (QueryException $e) {
+            return ['status' => 'error', 'message' => $e->getMessage()];
+        } catch (\Exception $e) {
+            return ['status' => 'error', 'message' => 'Terjadi kesalahan: ' . $e->getMessage()];
+        }
     }
 }

@@ -56,7 +56,7 @@ class HomeController extends Controller
             $orderDirection = $request->input('order.0.dir'); // Arah sorting (asc/desc)
 
             // Daftar kolom yang bisa di-sort
-            $columns = ['inserted_date', null, 'namafunction', 'namatabel', 'namapengguna'];
+            $columns = [null, 'inserted_date', null, 'namafunction', 'namatabel', 'namapengguna'];
 
             // Pastikan index kolom valid
             if (isset($columns[$orderColumn])) {
@@ -90,6 +90,7 @@ class HomeController extends Controller
         foreach ($rsData as $row) {
             
             $data[] = [
+                'no' => $no++,
                 'inserted_date' => $row->inserted_date,
                 'deskripsi' => $row->deskripsi,
                 'namafunction' => $row->namafunction,
