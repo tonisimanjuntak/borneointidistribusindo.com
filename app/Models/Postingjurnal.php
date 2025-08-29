@@ -665,7 +665,7 @@ class Postingjurnal extends Model
                 ->where('idposting', $idposting)
                 ->delete();
 
-            $this->App->riwayatAktifitas($rsPosting, 'sales', 'hapusData');
+            $this->App->riwayatAktifitas($rsPosting, 'postingjurnal', 'hapusData');
 
             return ['status' => 'success', 'message' => "Data berhasil dihapus"];
         } catch (QueryException $e) {

@@ -392,7 +392,7 @@ Route::middleware(['check.menu.access'])->group(function () {
         Route::controller(PostingjurnalController::class)->group(function () {
             Route::get('postingjurnal', 'index');
             Route::get('postingjurnal/getDataID', 'getDataID');
-            Route::get('postingjurnal/hapus/{id}', 'hapus');
+            Route::get('postingjurnal/batalposting/{id}', 'batalposting');
             Route::post('postingjurnal/mulaiPosting', 'mulaiPosting');
             Route::get('postingjurnal/listdata', 'listdata')->name('postingjurnal.listdata');            
         });

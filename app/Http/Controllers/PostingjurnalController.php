@@ -85,7 +85,7 @@ class PostingjurnalController extends Controller
                 'jumlahdebet' => format_rupiah($row->jumlahdebet),
                 'jumlahkredit' => format_rupiah($row->jumlahkredit),
                 'namapengguna' => $row->namapengguna . '<br>' . tgldatetime($row->inserted_date),
-                'action' => '<a href="' . url('postingjurnal/hapus/' . Crypt::encrypt($row->idposting)) . '" class="btn btn-danger btn-sm" id="btnHapus"><i class="fa fa-trash"></i></a>',
+                'action' => '<a href="' . url('postingjurnal/batalposting/' . Crypt::encrypt($row->idposting)) . '" class="btn btn-danger btn-sm" id="btnHapus"><i class="fa fa-trash"></i></a>',
 
             ];
         }
@@ -117,7 +117,7 @@ class PostingjurnalController extends Controller
         }
     }
 
-    public function hapus($idposting)
+    public function batalposting($idposting)
     {
         $idposting = Crypt::decrypt($idposting);
         try {
