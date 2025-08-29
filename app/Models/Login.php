@@ -104,7 +104,7 @@ class Login extends Model
         return $tree;
     }
 
-    public function updateData($data, $idpengguna, $aksi)
+    public function updateDataLogin($data, $idpengguna)
     {
         try {
 
@@ -113,7 +113,21 @@ class Login extends Model
                 ->update($data);
 
 
-            $this->App->riwayatAktifitas($data, 'aplikasi', $aksi);
+            $this->App->riwayatAktifitas($data, 'aplikasi', 'login');
+
+            return ['status' => 'success', 'message' => "Data berhasil disimpan"];
+        } catch (QueryException $e) {
+            return ['status' => 'error', 'message' => $e->getMessage()];
+        } catch (\Exception $e) {
+            return ['status' => 'error', 'message' => 'Terjadi kesalahan: ' . $e->getMessage()];
+        }
+    }
+
+    public function updateDataLogout($data, $idpengguna)
+    {
+        try {
+
+            $this->App->riwayatAktifitas($data, 'aplikasi', 'logout');
 
             return ['status' => 'success', 'message' => "Data berhasil disimpan"];
         } catch (QueryException $e) {
