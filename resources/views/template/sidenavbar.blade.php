@@ -657,6 +657,14 @@ $level = session()->get('level');
                 </li>
 
                 <li class="nav-item">
+                    <a href="/pengguna/ubahpassword" class="nav-link">
+                        <i class="nav-icon fas fa-key"></i>
+                        <p>Ubah Password</p>
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
                     <a href="{{ route('logout') }}" class="nav-link">
                         <i class="nav-icon fas fa-sign-out-alt text-warning"></i>
                         <p>Logout</p>

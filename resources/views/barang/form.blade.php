@@ -96,7 +96,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="stokminimum">Stok Minimum</label>
-                                            <input type="number" name="stokminimum" id="stokminimum" class="form-control rupiah">
+                                            <input type="number" name="stokminimum" id="stokminimum" class="form-control">
                                         </div>
                                     </div>
 

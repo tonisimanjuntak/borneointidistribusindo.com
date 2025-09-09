@@ -367,3 +367,34 @@ select {
 .select2-selection__choice {
     color: black !important; /* Warna teks hitam */
 }
+
+.table-rapat {
+    width: 100%; /* Lebar tabel sesuai kontainer */
+    border-collapse: collapse; /* Menghilangkan spasi antar sel */
+    font-family: Arial, sans-serif;
+    font-size: 14px; /* Ukuran font bisa disesuaikan */
+}
+
+/* Styling untuk header tabel */
+.table-rapat th {
+    background-color: #f4f4f4; /* Warna latar belakang header */
+    text-align: left; /* Teks rata kiri */
+    padding: 5px; /* Padding kecil agar tidak terlalu longgar */
+}
+
+/* Styling untuk sel data */
+.table-rapat td {
+    padding: 3px 5px; /* Padding vertikal 3px, horizontal 5px */
+    border: 1px solid #ddd; /* Garis tipis di sekitar sel */
+}
+
+/* Menghilangkan margin ekstra di sekitar tabel */
+.table-rapat table, th, td {
+    margin: 0;
+    border-spacing: 0; /* Menghilangkan spasi antar sel */
+}
+
+/* Hover effect untuk baris (opsional) */
+.table-rapat tr:hover {
+    background-color: #f9f9f9; /* Highlight baris saat dihover */
+}

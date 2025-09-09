@@ -8,6 +8,7 @@ use App\Models\Otorisasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Hash;
 
 class PenggunaController extends Controller
 {
@@ -416,4 +417,66 @@ class PenggunaController extends Controller
 
         return response()->json($rsOtorisasi);
     }
+
+
+    public function ubahpassword()
+    {
+        $data['menu'] = 'pengguna';
+        $data['idpengguna'] = session('idpengguna');
+        return view('pengguna.formubahpassword', $data);
+    }
+
+
+    public function simpanubahpassword(Request $request)
+    {
+        $idpengguna = $request->get('idpengguna');
+        $passwordlama = $request->get('passwordlama');
+        $password = $request->get('password');
+        $password2 = $request->get('password2');
+        $fotopengguna = $request->file('fotopengguna');
+        $fotopengguna_lama = $request->get('fotopengguna_lama');
+        $inserted_date = date('Y-m-d H:i:s');
+        $updated_date = date('Y-m-d H:i:s');
+        
+        
+        if (empty($password) || empty($password2) || empty($passwordlama)) {
+            return redirect('/pengguna/ubahpassword')->with('other', 'Password tidak boleh kosong');
+        }
+
+        if ($password != $password2) {
+            return redirect('/pengguna/ubahpassword')->with('other', 'Ulangi password tidak sama');
+        }
+
+        $user = Pengguna::where('idpengguna', $idpengguna)->first();
+        if (Hash::check($request->passwordlama, $user->password)) {
+            
+            $uploads = Uploads::startUpload('uploads/pengguna', $fotopengguna, $fotopengguna_lama, 200);
+            if ($uploads['status'] == 'success') {
+                $file_name = $uploads['file_name'];
+            } else {
+                return redirect('/pengguna/ubahpassword')->with('fail', 'Data gagal disimpan! Error: ' . $uploads['message']);
+            }
+            
+
+            $data = array(
+                'fotopengguna' => $file_name,
+                'password' => bcrypt($password),
+                'updated_date' => $updated_date,
+            );
+            $simpan = $this->model->updateData($data, $idpengguna);
+
+            if ($simpan['status'] == 'success') {
+                return redirect('/pengguna/ubahpassword')->with('success', $simpan['message']);
+            } else {
+                return redirect('/pengguna/ubahpassword')->with('fail', 'Data gagal disimpan! Error: ' . $simpan['message']);
+            }
+
+        }else{            
+            return redirect('/pengguna/ubahpassword')->with('fail', 'Password lama tidak cocok: ');
+        }
+
+        
+    }
+
+
 }

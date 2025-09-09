@@ -92,6 +92,11 @@ Route::controller(LoginController::class)->group(function () {
 Route::controller(CronjobController::class)->group(function () {
             Route::get('cronjob/bersihkanriwayataktifitas', 'bersihkanriwayataktifitas');   
         });
+
+Route::controller(PenggunaController::class)->group(function () {
+            Route::get('pengguna/ubahpassword', 'ubahpassword');
+            Route::post('pengguna/simpanubahpassword', 'simpanubahpassword');
+        });
         
 //chek hak akse menus di proses di middleware
 Route::middleware(['check.menu.access'])->group(function () {

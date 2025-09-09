@@ -1,0 +1,41 @@
+list kerjaan
+BID
+
+Barang
+Minimum Stock, 4 digit karena minimum stok untuk semen adalah 2000 (OK)
+
+Jenis, fast middle slow sementara di tiadakan, menjadi 45 hari
+
+khusus bonus saless
+
+kuantiti x nilai bonus (300) - pph 21
+
+
+pajak pembelian dan penjualan tidak boleh di bulatkan, kecuali pas sudah total semua barang
+
+
+penjualan
+kode default BID bukan SJA (OK)
+
+jenis transaksi (credit/cash)= 500
+cara angkot (antar/ambil)=1500
+
+buku piutang
+penyesuaian harga mempengaruhi nilai pembayaran
+
+
+penagihan piutang (berlaku ke SJA dan BID)
+munculkan semua invoice atas nama sales tersebut tanpa aturan kecuali yang sudah lunas
+setiap user bisa ganti password (OK)
+
+konfigurasi setting khusus alamat
+
+
+khusus pembelian belum masuk jurnal...?
+
+pengguna
+posting jurnal munculkan fiturnya, jangan hanya lihat saja
+
+laporan pembelian dan penjualan muncul nama konsumen atau supplier
+
+cetak riwayat bisa per akun
