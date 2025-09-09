@@ -56,6 +56,8 @@ use App\Http\Controllers\SalesController;
 use App\Http\Controllers\StockopnameController;
 use App\Http\Controllers\SuratjalanController;
 use App\Http\Controllers\WilayahController;
+use App\Http\Controllers\CronjobController;
+
 use App\Models\Kategoribarang;
 
 /*
@@ -87,7 +89,10 @@ Route::controller(LoginController::class)->group(function () {
     Route::get('login/loadMenus', 'loadMenus');    
 });
 
-
+Route::controller(CronjobController::class)->group(function () {
+            Route::get('cronjob/bersihkanriwayataktifitas', 'bersihkanriwayataktifitas');   
+        });
+        
 //chek hak akse menus di proses di middleware
 Route::middleware(['check.menu.access'])->group(function () {
     
@@ -576,5 +581,7 @@ Route::middleware(['check.menu.access'])->group(function () {
             Route::get('laplabarugi', 'index');
             Route::get('laplabarugi/cetak/{tglawal}/{tglakhir}', 'cetak');            
         });
+
+        
 
 });
