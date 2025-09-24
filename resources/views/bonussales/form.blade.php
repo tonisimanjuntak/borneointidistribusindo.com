@@ -25,8 +25,7 @@
             <div class="row">
                 <div class="col-lg-12">
 
-                    <form action="#" method="POST" id="form"
-                        enctype="multipart/form-data">
+                    <form action="#" method="POST" id="form" enctype="multipart/form-data">
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex justify-content-between">
@@ -47,26 +46,28 @@
                                     <div class="col-md-3 required">
                                         <div class="form-group">
                                             <label for="tglbonus">Tgl Bonus</label>
-                                            <input type="date" name="tglbonus" id="tglbonus"
-                                                class="form-control" autofocus="" value="{{ date('Y-m-d') }}">
+                                            <input type="date" name="tglbonus" id="tglbonus" class="form-control"
+                                                autofocus="" value="{{ date('Y-m-d') }}">
                                         </div>
                                     </div>
 
                                     <div class="col-md-9 required">
                                         <div class="form-group">
                                             <label for="namasales">Nama Sales</label>
-                                            <select name="idsales" id="idsales" class="form-control searchSales"></select>
+                                            <select name="idsales" id="idsales"
+                                                class="form-control searchSales"></select>
                                         </div>
                                     </div>
 
                                     <div class="col-md-12 required">
                                         <div class="form-group">
                                             <label for="namasales">Keterangan</label>
-                                            <textarea name="keterangan" id="keterangan" class="form-control" rows="2" placeholder="Keterangan"></textarea>
+                                            <textarea name="keterangan" id="keterangan" class="form-control" rows="2"
+                                                placeholder="Keterangan"></textarea>
                                         </div>
                                     </div>
 
-                                    
+
 
                                     <div class="col-md-12 required">
                                         <div class="card card-primary">
@@ -85,18 +86,21 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="totalbonuspenjualan">Bonus Penjualan</label>
-                                                            <input type="text" name="totalbonuspenjualan" id="totalbonuspenjualan"
-                                                                class="form-control rupiah" readonly>
+                                                            <input type="text" name="totalbonuspenjualan"
+                                                                id="totalbonuspenjualan" class="form-control rupiah"
+                                                                readonly>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-12">
-                                                        <div class="card card-default collapsed collapsed-card" data-card-widget="collapse">
+                                                        <div class="card card-default collapsed collapsed-card"
+                                                            data-card-widget="collapse">
                                                             <div class="card-header">
                                                                 <h3 class="card-title">Detail Bonus Penjualan</h3>
 
                                                                 <div class="card-tools">
-                                                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                                                    <button type="button" class="btn btn-tool"
+                                                                        data-card-widget="collapse">
                                                                         <i class="fas fa-plus"></i>
                                                                     </button>
                                                                 </div>
@@ -108,22 +112,44 @@
                                                                         <table class="table" id="tablePenjualan">
                                                                             <thead>
                                                                                 <tr>
-                                                                                    <th style="width: 5%; text-align: center;" rowspan="2">No</th>
-                                                                                    <th style="display: none;" rowspan="2">idpenjualan</th>
-                                                                                    <th style="display: none;" rowspan="2">idpenjualandetail</th>
-                                                                                    <th style="display: none;" rowspan="2">jenisbonuspenjualan</th>
-                                                                                    <th style="display: none;" rowspan="2">persenbonuspenjualan</th>
-                                                                                    <th style="display: none;" rowspan="2">jumlahbonuspenjualan</th>
-                                                                                    <th style="display: none;" rowspan="2">iddetailsuratjalan</th>
-                                                                                    <th style="width: 15%; text-align: center;" rowspan="2">Nomor Invoice</th>
-                                                                                    <th style="width: 10%; text-align: center;" rowspan="2">Tgl Invoice</th>
-                                                                                    <th style="text-align: left;" rowspan="2">Nama Barang</th>
-                                                                                    <th style="width: 10%; text-align: right;" rowspan="2">Harga Jual Bersih</th>
-                                                                                    <th style="width: 20%; text-align: center;" colspan="2">Komisi</th>
+                                                                                    <th style="width: 5%; text-align: center;"
+                                                                                        rowspan="2">No</th>
+                                                                                    <th style="display: none;"
+                                                                                        rowspan="2">idpenjualan</th>
+                                                                                    <th style="display: none;"
+                                                                                        rowspan="2">idpenjualandetail
+                                                                                    </th>
+                                                                                    <th style="display: none;"
+                                                                                        rowspan="2">jenisbonuspenjualan
+                                                                                    </th>
+                                                                                    <th style="display: none;"
+                                                                                        rowspan="2">persenbonuspenjualan
+                                                                                    </th>
+                                                                                    <th style="display: none;"
+                                                                                        rowspan="2">jumlahbonuspenjualan
+                                                                                    </th>
+                                                                                    <th style="display: none;"
+                                                                                        rowspan="2">iddetailsuratjalan
+                                                                                    </th>
+                                                                                    <th style="width: 15%; text-align: center;"
+                                                                                        rowspan="2">Nomor Invoice</th>
+                                                                                    <th style="width: 10%; text-align: center;"
+                                                                                        rowspan="2">Tgl Invoice</th>
+                                                                                    <th style="text-align: left;"
+                                                                                        rowspan="2">Nama Barang</th>
+                                                                                    <th style="width: 10%; text-align: right;"
+                                                                                        rowspan="2">Harga Jual Bersih
+                                                                                    </th>
+                                                                                    <th style="width: 20%; text-align: center;"
+                                                                                        colspan="2">Komisi</th>
                                                                                 </tr>
                                                                                 <tr>
-                                                                                    <th style="width: 10%; text-align: center;">%</th>
-                                                                                    <th style="width: 10%; text-align: right;">Jumlah</th>
+                                                                                    <th
+                                                                                        style="width: 10%; text-align: center;">
+                                                                                        %</th>
+                                                                                    <th
+                                                                                        style="width: 10%; text-align: right;">
+                                                                                        Jumlah</th>
 
                                                                                 </tr>
                                                                             </thead>
@@ -135,13 +161,14 @@
 
                                                                     </div>
                                                                 </div>
-                                                                
+
                                                             </div>
                                                             <!-- /.card-body -->
                                                             <div class="card-footer">
-                                                                <i>*Sumber nya dari penjualan yang sudah ada surat jalan nya.</i>
+                                                                <i>*Sumber nya dari penjualan yang sudah ada surat jalan
+                                                                    nya.</i>
                                                             </div>
-                                                            </div>
+                                                        </div>
                                                     </div>
 
 
@@ -153,7 +180,7 @@
                                     </div>
 
 
-                                    <div class="col-md-12 required">
+                                    <div class="col-md-12 required" style="display: none;">
                                         <div class="card card-primary">
                                             <div class="card-header">
                                                 <h5>Bonus Penagihan</h5>
@@ -170,18 +197,21 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="totalbonuspenagihan">Bonus Penagihan</label>
-                                                            <input type="text" name="totalbonuspenagihan" id="totalbonuspenagihan"
-                                                                class="form-control rupiah" readonly>
+                                                            <input type="text" name="totalbonuspenagihan"
+                                                                id="totalbonuspenagihan" class="form-control rupiah"
+                                                                readonly>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-12">
-                                                        <div class="card collapsed collapsed-card" data-card-widget="collapse">
+                                                        <div class="card collapsed collapsed-card"
+                                                            data-card-widget="collapse">
                                                             <div class="card-header">
                                                                 <h3 class="card-title">Detail Bonus Penagihan</h3>
 
                                                                 <div class="card-tools">
-                                                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                                                    <button type="button" class="btn btn-tool"
+                                                                        data-card-widget="collapse">
                                                                         <i class="fas fa-plus"></i>
                                                                     </button>
                                                                 </div>
@@ -193,23 +223,40 @@
                                                                         <table class="table" id="tablePenagihan">
                                                                             <thead>
                                                                                 <tr>
-                                                                                    <th style="width: 5%; text-align: center;" rowspan="2">No</th>
-                                                                                    <th style="display: none;">IdPiutang</th>
-                                                                                    <th style="display: none;">idpenjualan</th>
-                                                                                    <th style="display: none;">IdPenjualanDetail</th>
-                                                                                    <th style="display: none;">jenisbonustagihan</th>
-                                                                                    <th style="display: none;">persenbonustagihan</th>
-                                                                                    <th style="display: none;">jumlahbonustagihan</th>
-                                                                                    <th style="width: 15%; text-align: center;" rowspan="2">Nomor Invoice</th>
-                                                                                    <th style="width: 10%; text-align: center;" rowspan="2">Tgl Invoice</th>
-                                                                                    <th style="text-align: center;" rowspan="2">Nama Barang</th>
-                                                                                    <th style="width: 5%; text-align: center;" rowspan="2">QTY</th>
-                                                                                    <th style="width: 10%; text-align: center;" rowspan="2">Sub Total Jual</th>
-                                                                                    <th style="width: 20%; text-align: center;" colspan="2">Komisi</th>
+                                                                                    <th style="width: 5%; text-align: center;"
+                                                                                        rowspan="2">No</th>
+                                                                                    <th style="display: none;">IdPiutang
+                                                                                    </th>
+                                                                                    <th style="display: none;">
+                                                                                        idpenjualan</th>
+                                                                                    <th style="display: none;">
+                                                                                        IdPenjualanDetail</th>
+                                                                                    <th style="display: none;">
+                                                                                        jenisbonustagihan</th>
+                                                                                    <th style="display: none;">
+                                                                                        persenbonustagihan</th>
+                                                                                    <th style="display: none;">
+                                                                                        jumlahbonustagihan</th>
+                                                                                    <th style="width: 15%; text-align: center;"
+                                                                                        rowspan="2">Nomor Invoice</th>
+                                                                                    <th style="width: 10%; text-align: center;"
+                                                                                        rowspan="2">Tgl Invoice</th>
+                                                                                    <th style="text-align: center;"
+                                                                                        rowspan="2">Nama Barang</th>
+                                                                                    <th style="width: 5%; text-align: center;"
+                                                                                        rowspan="2">QTY</th>
+                                                                                    <th style="width: 10%; text-align: center;"
+                                                                                        rowspan="2">Sub Total Jual</th>
+                                                                                    <th style="width: 20%; text-align: center;"
+                                                                                        colspan="2">Komisi</th>
                                                                                 </tr>
                                                                                 <tr>
-                                                                                    <th style="width: 10%; text-align: center;">%</th>
-                                                                                    <th style="width: 10%; text-align: center;">Jumlah</th>
+                                                                                    <th
+                                                                                        style="width: 10%; text-align: center;">
+                                                                                        %</th>
+                                                                                    <th
+                                                                                        style="width: 10%; text-align: center;">
+                                                                                        Jumlah</th>
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody id="tbodyPenagihan"></tbody>
@@ -218,13 +265,14 @@
 
                                                                     </div>
                                                                 </div>
-                                                                
+
                                                             </div>
                                                             <!-- /.card-body -->
                                                             <div class="card-footer">
-                                                                <i>*Sumber nya dari pembayaran piutang yang belum lewat jatuh tempo.</i>
+                                                                <i>*Sumber nya dari pembayaran piutang yang belum lewat
+                                                                    jatuh tempo.</i>
                                                             </div>
-                                                            </div>
+                                                        </div>
                                                     </div>
 
 
@@ -236,7 +284,7 @@
                                     </div>
 
 
-                                    <div class="col-md-12 required">
+                                    <div class="col-md-12 required" style="display: none;">
                                         <div class="card card-primary">
                                             <div class="card-header">
                                                 <h5>Bonus Target</h5>
@@ -246,32 +294,37 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label for="pencapaiantarget">Jumlah Penjualan</label>
-                                                            <input type="text" name="pencapaiantarget" id="pencapaiantarget"
-                                                                class="form-control rupiah" readonly>
+                                                            <input type="text" name="pencapaiantarget"
+                                                                id="pencapaiantarget" class="form-control rupiah"
+                                                                readonly>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label for="targetpenjualan">Jumlah Target</label>
-                                                            <input type="text" name="targetpenjualan" id="targetpenjualan"
-                                                                class="form-control rupiah" readonly>
+                                                            <input type="text" name="targetpenjualan"
+                                                                id="targetpenjualan" class="form-control rupiah"
+                                                                readonly>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label for="totalbonustarget">Bonus Target</label>
-                                                            <input type="text" name="totalbonustarget" id="totalbonustarget"
-                                                                class="form-control rupiah" readonly>
+                                                            <input type="text" name="totalbonustarget"
+                                                                id="totalbonustarget" class="form-control rupiah"
+                                                                readonly>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-12">
-                                                        <div class="card collapsed collapsed-card" data-card-widget="collapse">
+                                                        <div class="card collapsed collapsed-card"
+                                                            data-card-widget="collapse">
                                                             <div class="card-header">
                                                                 <h3 class="card-title">Detail Bonus Target Barang</h3>
 
                                                                 <div class="card-tools">
-                                                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                                                    <button type="button" class="btn btn-tool"
+                                                                        data-card-widget="collapse">
                                                                         <i class="fas fa-plus"></i>
                                                                     </button>
                                                                 </div>
@@ -283,21 +336,39 @@
                                                                         <table class="table" id="tableTarget">
                                                                             <thead>
                                                                                 <tr>
-                                                                                    <th style="width: 5%; text-align: center;" rowspan="2">No</th>
-                                                                                    <th style="display: none;" rowspan="2">Idpenjualan</th>
-                                                                                    <th style="display: none;" rowspan="2">IdPenjualanDetail</th>
-                                                                                    <th style="display: none;" rowspan="2">idjenisbarang</th>
-                                                                                    <th style="display: none;" rowspan="2">persenbonustarget</th>
-                                                                                    <th style="width: 15%; text-align: center;" rowspan="2">Nomor Invoice</th>
-                                                                                    <th style="width: 10%; text-align: center;" rowspan="2">Tgl Invoice</th>
-                                                                                    <th style="text-align: left;" rowspan="2">Nama Barang</th>
-                                                                                    <th style="width: 10%; text-align: center;" rowspan="2">Jenis</th>
-                                                                                    <th style="width: 10%; text-align: right;" rowspan="2">Harga Jual Bersih</th>
-                                                                                    <th style="width: 20%; text-align: center;" colspan="2">Komisi</th>
+                                                                                    <th style="width: 5%; text-align: center;"
+                                                                                        rowspan="2">No</th>
+                                                                                    <th style="display: none;"
+                                                                                        rowspan="2">Idpenjualan</th>
+                                                                                    <th style="display: none;"
+                                                                                        rowspan="2">IdPenjualanDetail
+                                                                                    </th>
+                                                                                    <th style="display: none;"
+                                                                                        rowspan="2">idjenisbarang</th>
+                                                                                    <th style="display: none;"
+                                                                                        rowspan="2">persenbonustarget
+                                                                                    </th>
+                                                                                    <th style="width: 15%; text-align: center;"
+                                                                                        rowspan="2">Nomor Invoice</th>
+                                                                                    <th style="width: 10%; text-align: center;"
+                                                                                        rowspan="2">Tgl Invoice</th>
+                                                                                    <th style="text-align: left;"
+                                                                                        rowspan="2">Nama Barang</th>
+                                                                                    <th style="width: 10%; text-align: center;"
+                                                                                        rowspan="2">Jenis</th>
+                                                                                    <th style="width: 10%; text-align: right;"
+                                                                                        rowspan="2">Harga Jual Bersih
+                                                                                    </th>
+                                                                                    <th style="width: 20%; text-align: center;"
+                                                                                        colspan="2">Komisi</th>
                                                                                 </tr>
                                                                                 <tr>
-                                                                                    <th style="width: 10%; text-align: center;">%</th>
-                                                                                    <th style="width: 10%; text-align: right;">Jumlah</th>
+                                                                                    <th
+                                                                                        style="width: 10%; text-align: center;">
+                                                                                        %</th>
+                                                                                    <th
+                                                                                        style="width: 10%; text-align: right;">
+                                                                                        Jumlah</th>
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody id="tbodyTarget">
@@ -308,17 +379,18 @@
 
                                                                     </div>
                                                                 </div>
-                                                                
+
                                                             </div>
                                                             <!-- /.card-body -->
                                                             <div class="card-footer">
-                                                                <i>*Sumber nya dari pembayaran piutang yang belum lewat jatuh tempo.</i>
+                                                                <i>*Sumber nya dari pembayaran piutang yang belum lewat
+                                                                    jatuh tempo.</i>
                                                             </div>
-                                                            </div>
+                                                        </div>
                                                     </div>
 
 
-                                                    
+
                                                 </div>
 
                                             </div>
@@ -374,9 +446,15 @@
         })
         .done(function(getBonusResult) {
             console.log(getBonusResult);
+            // var kosong = [];
             hitungBonusPenjualan(getBonusResult['rsHitungBonusPenjualan']);
-            hitungBonusPenagihan(getBonusResult['rsHitungBonusPenagihan']);
-            hitungBonusTarget(getBonusResult['rsHitungBonusTarget'], getBonusResult['TargetPenjualanSales'], getBonusResult['PencapaianPenjualan']);
+            // hitungBonusPenagihan(getBonusResult['rsHitungBonusPenagihan']);
+            // hitungBonusTarget(getBonusResult['rsHitungBonusTarget'], getBonusResult['TargetPenjualanSales'], getBonusResult['PencapaianPenjualan']);
+            $('#totalpenagihan').val('0');
+            $('#totalbonuspenagihan').val('0');
+            $('#pencapaiantarget').val('0');
+            $('#targetpenjualan').val('0');
+            $('#totalbonustarget').val('0');
             
         })
         .fail(function() {
@@ -550,7 +628,6 @@
                 $('#pencapaiantarget').val(totitik(jumlahpencapaian));
                 $('#targetpenjualan').val( totitik(jumlahtarget));
                 $('#totalbonustarget').val( totitik(totalbonustarget));
-                
             }else{
                 $('#pencapaiantarget').val('0');
                 $('#targetpenjualan').val('0');

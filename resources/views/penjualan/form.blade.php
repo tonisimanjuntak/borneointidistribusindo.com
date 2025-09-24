@@ -64,16 +64,19 @@
                                                 <div class="col-md-6 required">
                                                     <div class="form-group">
                                                         <label for="idkonsumen">Nama Konsumen</label>
-                                                        <select name="idkonsumen" id="idkonsumen" class="form-control searchKonsumen"></select>
+                                                        <select name="idkonsumen" id="idkonsumen"
+                                                            class="form-control searchKonsumen"></select>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12 required">
                                                     <div class="form-group">
                                                         <label for="idsales">Nama Sales</label>
-                                                        <select name="idsales" id="idsales" class="form-control select2">
+                                                        <select name="idsales" id="idsales"
+                                                            class="form-control select2">
                                                             <option value="">Pilih nama sales...</option>
                                                             @foreach ($rsSales as $row)
-                                                                <option value="{{ $row->idsales }}">{{ $row->namasales.' (NPWP: '.$row->npwp.')' }}</option>    
+                                                            <option value="{{ $row->idsales }}">{{ $row->namasales.'
+                                                                (NPWP: '.$row->npwp.')' }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -82,7 +85,8 @@
                                                 <div class="col-md-2 required">
                                                     <div class="form-group">
                                                         <label for="carabayar">Cara Bayar</label>
-                                                        <select name="carabayar" id="carabayar" class="form-control select2">
+                                                        <select name="carabayar" id="carabayar"
+                                                            class="form-control select2">
                                                             <option value="">Pilih cara bayar...</option>
                                                             <option value="Tunai">Tunai</option>
                                                             <option value="Transfer">Transfer</option>
@@ -95,7 +99,8 @@
                                                 <div class="col-md-5 required" id="divBank" style="display:none;">
                                                     <div class="form-group">
                                                         <label for="idbank">Nama Bank</label>
-                                                        <select name="idbank" id="idbank" class="form-control searchBank">
+                                                        <select name="idbank" id="idbank"
+                                                            class="form-control searchBank">
                                                         </select>
                                                     </div>
                                                 </div>
@@ -109,10 +114,12 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-6 required" id="divJenisPiutang" style="display:none;">
+                                                <div class="col-md-6 required" id="divJenisPiutang"
+                                                    style="display:none;">
                                                     <div class="form-group">
                                                         <label for="idjenispiutang">Jenis Piutang</label>
-                                                        <select name="idjenispiutang" id="idjenispiutang" class="form-control searchJenisPiutang">
+                                                        <select name="idjenispiutang" id="idjenispiutang"
+                                                            class="form-control searchJenisPiutang">
                                                         </select>
                                                     </div>
                                                 </div>
@@ -120,7 +127,8 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="keterangan">Keterangan</label>
-                                                        <textarea name="keterangan" id="keterangan" rows="3" class="form-control"
+                                                        <textarea name="keterangan" id="keterangan" rows="3"
+                                                            class="form-control"
                                                             placeholder="Keterangan Penjualan"></textarea>
                                                     </div>
                                                 </div>
@@ -139,7 +147,10 @@
                                                     <h3 class="text-muted">Detail Invoice</h3>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <button class="btn btn-md btn-success float-right" data-toggle="modal" data-target="#modalTambahBarang" id="btnTambahDetail"><i class="fa fa-plus-circle mr-1"></i> Tambah Detail</button>
+                                                    <button class="btn btn-md btn-success float-right"
+                                                        data-toggle="modal" data-target="#modalTambahBarang"
+                                                        id="btnTambahDetail"><i class="fa fa-plus-circle mr-1"></i>
+                                                        Tambah Detail</button>
                                                 </div>
                                                 <div class="col-12 mt-3">
                                                     <div class="table-responsive">
@@ -155,12 +166,16 @@
                                                                     <th style="">jumlahdiskon</th>
                                                                     <th style="">Nama Barang</th>
                                                                     <th style="width: 5%; text-align: center;">Qty</th>
-                                                                    <th style="width: 10%; text-align: right;">Harga Satuan</th>
+                                                                    <th style="width: 10%; text-align: right;">Harga
+                                                                        Satuan</th>
                                                                     <th style="width: 10%; text-align: right;">DPP</th>
                                                                     <th style="width: 10%; text-align: right;">PPN</th>
-                                                                    <th style="width: 10%; text-align: right;">Discount</th>
-                                                                    <th style="width: 10%; text-align: right;">Sub Total</th>
-                                                                    <th style="width: 15%; text-align: center;">Aksi</th>
+                                                                    <th style="width: 10%; text-align: right;">Discount
+                                                                    </th>
+                                                                    <th style="width: 10%; text-align: right;">Sub Total
+                                                                    </th>
+                                                                    <th style="width: 15%; text-align: center;">Aksi
+                                                                    </th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -177,26 +192,30 @@
                                 </div>
 
                                 <div class="col-6">
-                                    
+
                                 </div>
                                 <div class="col-md-6">
                                     <div class="row">
 
                                         <input type="hidden" name="biayapengiriman" id="biayapengiriman"
-                                        class="form-control col-md-6 rupiah" value="0">
+                                            class="form-control col-md-6 rupiah" value="0">
 
                                         <label for="totaldpp" class="col-md-6 col-form-label">Jumlah DPP</label>
-                                        <input type="text" name="totaldpp" id="totaldpp" class="form-control col-md-6 rupiah" value="0" readonly>
+                                        <input type="text" name="totaldpp" id="totaldpp"
+                                            class="form-control col-md-6 rupiah" value="0" readonly>
 
-                                        <label for="totalppn" class="col-md-6 col-form-label">PPN ({{ session()->get('ppn_penjualan') }}%)</label>
+                                        <label for="totalppn" class="col-md-6 col-form-label">PPN ({{
+                                            session()->get('ppn_penjualan') }}%)</label>
                                         <input type="text" name="totalppn" id="totalppn"
                                             class="form-control col-md-6 rupiah" value="0" readonly>
 
                                         <label for="totaldiskon" class="col-md-6 col-form-label">Jumlah Diskon</label>
-                                        <input type="text" name="totaldiskon" id="totaldiskon" class="form-control col-md-6 rupiah" value="0" readonly>
+                                        <input type="text" name="totaldiskon" id="totaldiskon"
+                                            class="form-control col-md-6 rupiah" value="0" readonly>
 
-                                        <input type="hidden" name="ppnpersen" id="ppnpersen" value="{{ session()->get('ppn_penjualan') }}" readonly>
-                                        
+                                        <input type="hidden" name="ppnpersen" id="ppnpersen"
+                                            value="{{ session()->get('ppn_penjualan') }}" readonly>
+
 
                                         <div class="col-md-12">
                                             <hr>
@@ -206,7 +225,7 @@
                                         <input type="text" name="totalinvoice" id="totalinvoice"
                                             class="form-control col-md-6 rupiah" value="0" readonly>
 
-                                        
+
                                     </div>
 
                                 </div>
@@ -547,8 +566,9 @@
         }
 
         if (carabayar == 'Piutang') {
-            $('#divJenisPiutang').show();
-
+            // $('#divJenisPiutang').show();
+            addSelectOption('idjenispiutang', 'P02', 'Middle 45 Hari');
+            $('#idjenispiutang').val('P02') // default midle 45 hari request agustus2025
         }
     });
 
