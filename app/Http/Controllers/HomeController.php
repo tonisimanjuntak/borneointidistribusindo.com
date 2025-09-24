@@ -38,6 +38,11 @@ class HomeController extends Controller
         $query = Riwayataktifitas::select('*');
         $tglawal = $request->input('tglawal');
         $tglakhir = $request->input('tglakhir');
+        $idpengguna = $request->input('idpengguna');
+
+        if (!empty($idpengguna)) {
+            $query->where('idpengguna', $idpengguna);
+        }
 
         // $query->whereBetween("inserted_date", [$tglawal, $tglakhir]);
         $query->whereRaw("CAST(inserted_date AS DATE) BETWEEN ? AND ?", [$tglawal, $tglakhir]);
@@ -176,12 +181,16 @@ class HomeController extends Controller
     }
 
 
-    public function cetakriwayataktifitas($tglawal, $tglakhir)
+    public function cetakriwayataktifitas($tglawal, $tglakhir, $idpengguna)
     {
         /*
             composer require tecnickcom/tcpdf
         */
-        $data['rsRiwayat'] = Riwayataktifitas::select('*')->whereRaw("CAST(inserted_date AS DATE) BETWEEN ? AND ?", [$tglawal, $tglakhir])->get();
+        $query = Riwayataktifitas::select('*')->whereRaw("CAST(inserted_date AS DATE) BETWEEN ? AND ?", [$tglawal, $tglakhir]);
+        if ($idpengguna != "-") {
+            $query = $query->where('idpengguna', $idpengguna);
+        }
+        $data['rsRiwayat'] = $query->get();
         $data['tglawal'] = $tglawal;
         $data['tglakhir'] = $tglakhir;
         $view = view('cetakriwayataktifitas', $data);
@@ -191,9 +200,9 @@ class HomeController extends Controller
         // Set properti dokumen
         $pdf->SetCreator(PDF_CREATOR);
         $pdf->SetAuthor('TZ Developer');
-        $pdf->SetTitle('Laporan Jurnal');
-        $pdf->SetSubject('Laporan Jurnal');
-        $pdf->SetKeywords('TCPDF, PDF, laporan, jurnal');
+        $pdf->SetTitle('Laporan Riwayat Aktifitas');
+        $pdf->SetSubject('Laporan Riwayat Aktifitas');
+        $pdf->SetKeywords('TCPDF, PDF, laporan, riwayataktifitas');
         $pdf->SetFont('times', '', 10);
         $pdf->setPrintHeader(false);
         $pdf->setPrintFooter(false);
@@ -208,7 +217,7 @@ class HomeController extends Controller
         $pdf->writeHTML($view, true, false, true, false, '');
 
         // Output PDF
-        $pdf->Output('laporan_jurnal.pdf', 'I');
+        $pdf->Output('laporan_riwayataktifitas.pdf', 'I');
             
     }
 }

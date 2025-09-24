@@ -38,22 +38,44 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-12 mb-3">
-                                    <div class="form-group row">
+                                <div class="col-md-4">
+                                    <div class="row">
                                         <div class="col-12">
-                                            <label>Tanggal Riwayat:</label>
+                                            <label class="">Tanggal Riwayat:</label>
                                         </div>
-                                        <div class="col-md-2">
-                                            <input type="date" name="tglawal" id="tglawal" class="form-control" value="{{ date('Y-01-01') }}">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="date" name="tglakhir" id="tglakhir" class="form-control" value="{{ date('Y-m-d') }}">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <button type="button" class="btn btn-success" id="btnCari"><i class="fa fa-search"></i> Cari</button>
-                                            <button type="button" class="btn btn-primary" id="btnPrint"><i class="fa fa-print"></i> Print</button>
+                                        <div class="col-12">
+                                            <div class="form-group row">
+                                                <div class="col-md-5">
+                                                    <input type="date" name="tglawal" id="tglawal" class="form-control"
+                                                        value="{{ date('Y-01-01') }}">
+                                                </div>
+                                                <div class="col-md-2 text-center">
+                                                    <label for="">S/D</label>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <input type="date" name="tglakhir" id="tglakhir"
+                                                        class="form-control" value="{{ date('Y-m-d') }}">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label for="">Nama Pengguna</label>
+                                        <select name="idpengguna" id="idpengguna"
+                                            class="form-control searchPengguna"></select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-success" id="btnCari"><i
+                                            class="fa fa-search"></i> Cari</button>
+                                    <button type="button" class="btn btn-primary" id="btnPrint"><i
+                                            class="fa fa-print"></i> Print</button>
+                                </div>
+
+                                <div class="col-12 mt-3 mb-3">
+                                    <hr>
                                 </div>
 
                                 <div class="col-12">
@@ -70,6 +92,7 @@
                                         </thead>
                                     </table>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -96,6 +119,7 @@
                 data: function(d) {
                     d.tglawal = $('#tglawal').val();
                     d.tglakhir = $('#tglakhir').val();
+                    d.idpengguna = $('#idpengguna').val();
                 }
             },
             pageLength: 50, // Jumlah data per halaman
@@ -173,13 +197,20 @@
     $('#btnPrint').click(function() {
         var tglawal = $('#tglawal').val();
         var tglakhir = $('#tglakhir').val();
+        var idpengguna = $('#idpengguna').val();
 
         if (tglawal === '' || tglakhir === '') {
             swal("Informasi", "Tanggal periode belum dipilih!", "info");
             return;
         }
 
-        window.open("{{ url('home/cetakriwayataktifitas') }}" + "/" + tglawal + "/" + tglakhir);
+        if (idpengguna === '' || idpengguna === null) {
+            idpengguna = "-";            
+        }
+
+
+
+        window.open("{{ url('home/cetakriwayataktifitas') }}" + "/" + tglawal + "/" + tglakhir + "/" + idpengguna);
     });
 
 

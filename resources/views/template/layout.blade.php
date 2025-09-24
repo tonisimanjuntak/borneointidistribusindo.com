@@ -31,22 +31,19 @@
     <!-- Custom -->
     <link rel="stylesheet" type="text/css" href="{{ asset('') }}assets/custom/custom.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/css/bootstrap3/bootstrap-switch.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/css/bootstrap3/bootstrap-switch.min.css">
 
     <style>
-
-        
         .loader {
-			position: fixed;
-			left: 0px;
-			top: 0px;
-			width: 50%;
-			height: 50%;
-			z-index: 9999;
-			background: url("{{ asset('images/Loading.gif') }}") 100% 100% no-repeat;
-		}
-
-
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 50%;
+            height: 50%;
+            z-index: 9999;
+            background: url("{{ asset('images/Loading.gif') }}") 100% 100% no-repeat;
+        }
     </style>
 </head>
 
@@ -405,6 +402,27 @@
                 },
             });
 
+
+            $('.searchPengguna').select2({
+                placeholder: 'Cari nama pengguna...',
+                minimumInputLength: 0, // Minimal karakter untuk memulai pencarian
+                ajax: {
+                    url: "{{ route('pengguna.searchPengguna') }}", // URL untuk pencarian
+                    dataType: 'json',
+                    delay: 250, // Delay saat mengetik (ms)
+                    data: function(params) {
+                        return {
+                            q: params.term, // Parameter pencarian
+                        };
+                    },
+                    processResults: function(data) {
+                        return {
+                            results: data.results, // Format data untuk Select2
+                        };
+                    },
+                    cache: true
+                },
+            });
 
             $('.searchKasir').select2({
                 placeholder: 'Cari nama kasir...',

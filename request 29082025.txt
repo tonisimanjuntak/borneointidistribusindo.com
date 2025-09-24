@@ -34,8 +34,8 @@ konfigurasi setting khusus alamat (OK - ini kita saja karna alamat gak ber ubah 
 khusus pembelian belum masuk jurnal...?
 
 pengguna
-posting jurnal munculkan fiturnya, jangan hanya lihat saja
+posting jurnal munculkan fiturnya, jangan hanya lihat saja (OK)
 
-laporan pembelian dan penjualan muncul nama konsumen atau supplier
+laporan pembelian dan penjualan muncul nama konsumen atau supplier (OK)
 
-cetak riwayat bisa per akun
+cetak riwayat bisa per akun (OK)
