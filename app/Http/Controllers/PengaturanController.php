@@ -106,17 +106,18 @@ class PengaturanController extends Controller
                 'prefix' => $row->prefix,
                 'values' => $row->values,
                 'deskripsi' => $row->deskripsi,
-                'action' => '<div class="btn-group btn-block">
-                                <div class="btn-group dropleft" role="group">
-                                    <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="sr-only">Toggle Dropleft</span>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a href="' . url('pengaturan/hapus/' . Crypt::encrypt($row->prefix)) . '" class="dropdown-item" id="btnHapus">Hapus</a>
-                                    </div>
-                                </div>
-                                <a href="' . url('pengaturan/edit/' . Crypt::encrypt($row->prefix)) . '" class="btn btn-warning">Edit</a>                                
-                            </div>',
+                'action' => '<a href="' . url('pengaturan/edit/' . Crypt::encrypt($row->prefix)) . '" class="btn btn-warning"><i class="fa fa-edit mr-1"></i>Edit</a>',
+                // 'action' => '<div class="btn-group btn-block">
+                //                 <div class="btn-group dropleft" role="group">
+                //                     <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                //                     <span class="sr-only">Toggle Dropleft</span>
+                //                     </button>
+                //                     <div class="dropdown-menu">
+                //                         <a href="' . url('pengaturan/hapus/' . Crypt::encrypt($row->prefix)) . '" class="dropdown-item" id="btnHapus">Hapus</a>
+                //                     </div>
+                //                 </div>
+                //                 <a href="' . url('pengaturan/edit/' . Crypt::encrypt($row->prefix)) . '" class="btn btn-warning">Edit</a>                                
+                //             </div>',
 
             ];
         }

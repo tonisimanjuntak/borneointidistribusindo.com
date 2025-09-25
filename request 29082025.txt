@@ -17,8 +17,8 @@ pajak pembelian dan penjualan tidak boleh di bulatkan, kecuali pas sudah total s
 penjualan
 kode default BID bukan SJA (OK)
 
-jenis transaksi (credit/cash)= 500 ?
-cara angkot (antar/ambil)=1500 ?
+jenis transaksi (credit/cash)= 500  (OK)
+cara angkot (antar/ambil)=1500  (OK)
 
 buku piutang
 penyesuaian harga mempengaruhi nilai pembayaran ?
@@ -39,3 +39,8 @@ posting jurnal munculkan fiturnya, jangan hanya lihat saja (OK)
 laporan pembelian dan penjualan muncul nama konsumen atau supplier (OK)
 
 cetak riwayat bisa per akun (OK)
+
+
+database
+penjualan
+v_penjualan

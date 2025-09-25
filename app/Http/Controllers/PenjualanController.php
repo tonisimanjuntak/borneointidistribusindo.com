@@ -206,6 +206,9 @@ class PenjualanController extends Controller
         $totaldiskon = untitik($request->get('totaldiskon'));
         $biayapengiriman = untitik($request->get('biayapengiriman'));
         $totalinvoice = untitik($request->get('totalinvoice'));
+        $totalpotongancarabayar = untitik($request->get('totalpotongancarabayar'));
+        $totalpotonganpengiriman = untitik($request->get('totalpotonganpengiriman'));
+        $carapengiriman = untitik($request->get('carapengiriman'));
 
 
         $idsales = $request->get('idsales');
@@ -306,9 +309,10 @@ class PenjualanController extends Controller
                 'idsales' => $idsales,
                 'nokwitansi' => $nokwitansi,
                 'nobilyetgiro' => $nobilyetgiro,
+                'totalpotongancarabayar' => $totalpotongancarabayar,
+                'totalpotonganpengiriman' => $totalpotonganpengiriman,
+                'carapengiriman' => $carapengiriman,
             );
-
-
             $simpan = $this->model->simpanData($data, $dataDetail, $idpenjualan, $nokwitansi);
         } else {
 
@@ -359,6 +363,9 @@ class PenjualanController extends Controller
                 'idsales' => $idsales,
                 'nokwitansi' => $nokwitansi,
                 'nobilyetgiro' => $nobilyetgiro,
+                'totalpotongancarabayar' => $totalpotongancarabayar,
+                'totalpotonganpengiriman' => $totalpotonganpengiriman,
+                'carapengiriman' => $carapengiriman,
             );
 
             $simpan = $this->model->updateData($data, $dataDetail, $idpenjualan, $nokwitansi);

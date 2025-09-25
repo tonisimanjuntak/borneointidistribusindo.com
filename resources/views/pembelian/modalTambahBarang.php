@@ -80,7 +80,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-12">
+                                            <div class="col-12" style="display: none;">
                                                 <div class="form-group row">
                                                     <label for="hargadpp" class="col-md-3 col-form-label">Harga DPP</label>
                                                     <div class="col-md-3">
@@ -89,7 +89,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-12">
+                                            <div class="col-12" style="display: none;">
                                                 <div class="form-group row">
                                                     <label for="jumlahppn" class="col-md-3 col-form-label">Jumlah PPN</label>
                                                     <div class="col-md-3">
@@ -209,16 +209,17 @@
             tableData.push(rowData);
         });
 
-        var totalSemua = parseInt(subtotalbeli);
+        var totalhargasatuan = parseInt(subtotalbeli);
         for (var i = 0; i < tableData.length; i++) {
-            totalSemua += parseInt(untitik(tableData[i][13]));
+            totalhargasatuan += parseInt(untitik(tableData[i][3])) * parseInt(untitik(tableData[i][4]));
+
             if (idbarang == tableData[i][1]) {
                 swal("Informasi", "Data barang sudah ada!", "info");
                 return;
             }
         }
-
-        $('#total').val(numberWithCommas(totalSemua));
+        var totalppn = parseInt((11 / 111) * (parseInt(totalhargasatuan)));
+        $('#totalppn').val(totitik(totalppn));
 
 
         var No = $("#tableDetail tbody tr").length + 1;
@@ -238,7 +239,12 @@
 
         $('#tableDetail').append(addText);
         $('#tableDetail thead tr :nth-child(2)').hide();
+        $('#tableDetail thead tr :nth-child(6)').hide();
+        $('#tableDetail thead tr :nth-child(7)').hide();
+
         $('#tableDetail tbody tr :nth-child(2)').hide();
+        $('#tableDetail tbody tr :nth-child(6)').hide();
+        $('#tableDetail tbody tr :nth-child(7)').hide();
         hitungTotalFaktur();
         kosongkanModal();
     }
@@ -303,13 +309,16 @@
         var jumlahbeli = untitik($('#jumlahbeli').val());
         var hargasatuan = untitik($('#hargasatuan').val());
 
-        var jumlahppnsatuan = parseInt((11 / 111) * (parseInt(hargasatuan)));
-        var jumlahdppsatuan = parseInt(hargasatuan) - parseInt(jumlahppnsatuan);
+        // var jumlahppnsatuan = parseInt((11 / 111) * (parseInt(hargasatuan)));
+        // var jumlahdppsatuan = parseInt(hargasatuan) - parseInt(jumlahppnsatuan);
+
+        var jumlahppnsatuan = 0;
+        var jumlahdppsatuan = 0;
 
         $('#hargadpp').val(numberWithCommas(jumlahdppsatuan));
         $('#jumlahppn').val(numberWithCommas(jumlahppnsatuan));
 
-        var subtotal = parseInt(jumlahbeli) * (parseInt(jumlahdppsatuan + jumlahppnsatuan));
+        var subtotal = parseInt(jumlahbeli) * (parseInt(hargasatuan));
         $('#subtotalbeli').val(numberWithCommas(subtotal));
     }
 

@@ -35,11 +35,8 @@
                                 <h3 class="card-title font-weight-bold"><i class="far fa-list-alt mr-1"></i>List Data
                                     Pengaturan</h3>
                                 <a href="{{ url('pengaturan/tambah') }}" class="btn btn-sm btn-primary"
-                                    @if (!str_contains(strtolower(session('hakaksi_aktif')), 'tambah') )
-                                        style="display: none;"
-                                    @endif
-                                ><i
-                                        class="fa fa-plus-circle mr-1"></i> Tambah Data</a>
+                                    @if(!str_contains(strtolower(session('hakaksi_aktif')), 'tambah' ) )
+                                    style="display: none;" @endif><i class="fa fa-plus-circle mr-1"></i> Tambah Data</a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -116,7 +113,8 @@
                     data: 'action',
                     name: 'action',
                     orderable: false,
-                    searchable: false
+                    searchable: false,
+                    className: 'dt-body-center',
                 }
             ],
             language: {

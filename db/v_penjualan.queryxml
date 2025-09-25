@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <querybuilder version="8.3">
 <source>
-<database charset="utf8mb4" collation="utf8mb4_0900_ai_ci">pointofsales</database>
+<database charset="utf8mb4" collation="utf8mb4_general_ci">borneointidistribusindo</database>
 </source>
 <canvas>
 <table tablename="penjualan" alias="" left="10" top="21" width="150" height="278" />
@@ -368,6 +368,51 @@
 <or4></or4>
 </column>
 <column id="23">
+<table tablename="penjualan"></table>
+<field>totalpotongancarabayar</field>
+<alias></alias>
+<show>true</show>
+<sortorder></sortorder>
+<sort></sort>
+<groupby>false</groupby>
+<aggfunct></aggfunct>
+<criteria></criteria>
+<or1></or1>
+<or2></or2>
+<or3></or3>
+<or4></or4>
+</column>
+<column id="24">
+<table tablename="penjualan"></table>
+<field>totalpotonganpengiriman</field>
+<alias></alias>
+<show>true</show>
+<sortorder></sortorder>
+<sort></sort>
+<groupby>false</groupby>
+<aggfunct></aggfunct>
+<criteria></criteria>
+<or1></or1>
+<or2></or2>
+<or3></or3>
+<or4></or4>
+</column>
+<column id="25">
+<table tablename="penjualan"></table>
+<field>carapengiriman</field>
+<alias></alias>
+<show>true</show>
+<sortorder></sortorder>
+<sort></sort>
+<groupby>false</groupby>
+<aggfunct></aggfunct>
+<criteria></criteria>
+<or1></or1>
+<or2></or2>
+<or3></or3>
+<or4></or4>
+</column>
+<column id="26">
 <table tablename="konsumen"></table>
 <field>namakonsumen</field>
 <alias></alias>
@@ -382,7 +427,7 @@
 <or3></or3>
 <or4></or4>
 </column>
-<column id="24">
+<column id="27">
 <table tablename="konsumen"></table>
 <field>idwilayah</field>
 <alias></alias>
@@ -397,7 +442,7 @@
 <or3></or3>
 <or4></or4>
 </column>
-<column id="25">
+<column id="28">
 <table tablename="bank"></table>
 <field>namabank</field>
 <alias></alias>
@@ -412,7 +457,7 @@
 <or3></or3>
 <or4></or4>
 </column>
-<column id="26">
+<column id="29">
 <table tablename="bank"></table>
 <field>cabang</field>
 <alias></alias>
@@ -427,7 +472,7 @@
 <or3></or3>
 <or4></or4>
 </column>
-<column id="27">
+<column id="30">
 <table tablename="bank"></table>
 <field>norekening</field>
 <alias></alias>
@@ -442,7 +487,7 @@
 <or3></or3>
 <or4></or4>
 </column>
-<column id="28">
+<column id="31">
 <table tablename="bank"></table>
 <field>atasnama</field>
 <alias></alias>
@@ -457,7 +502,7 @@
 <or3></or3>
 <or4></or4>
 </column>
-<column id="29">
+<column id="32">
 <table tablename="sales"></table>
 <field>namasales</field>
 <alias></alias>
@@ -472,7 +517,7 @@
 <or3></or3>
 <or4></or4>
 </column>
-<column id="30">
+<column id="33">
 <table tablename="jenispiutang"></table>
 <field>namajenispiutang</field>
 <alias></alias>
@@ -487,7 +532,7 @@
 <or3></or3>
 <or4></or4>
 </column>
-<column id="31">
+<column id="34">
 <table tablename="jenispiutang"></table>
 <field>jatuhtempo</field>
 <alias></alias>
@@ -502,7 +547,7 @@
 <or3></or3>
 <or4></or4>
 </column>
-<column id="32">
+<column id="35">
 <table tablename="pengguna"></table>
 <field>namapengguna</field>
 <alias></alias>
@@ -517,7 +562,7 @@
 <or3></or3>
 <or4></or4>
 </column>
-<column id="33">
+<column id="36">
 <table tablename="wilayah"></table>
 <field>namawilayah</field>
 <alias></alias>

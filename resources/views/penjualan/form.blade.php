@@ -68,7 +68,7 @@
                                                             class="form-control searchKonsumen"></select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-12 required">
+                                                <div class="col-md-8 required">
                                                     <div class="form-group">
                                                         <label for="idsales">Nama Sales</label>
                                                         <select name="idsales" id="idsales"
@@ -80,6 +80,17 @@
                                                             @endforeach
                                                         </select>
                                                     </div>
+                                                </div>
+                                                <div class="col-md-4 required">
+                                                    <div class="form-group">
+                                                        <label for="carapengiriman">Cara Pengiriman</label>
+                                                        <select name="carapengiriman" id="carapengiriman"
+                                                            class="form-control select2">
+                                                            <option value="Diantar">Diantar</option>
+                                                            <option value="Diambil Sendiri">Diambil Sendiri</option>
+                                                        </select>
+                                                    </div>
+
                                                 </div>
 
                                                 <div class="col-md-2 required">
@@ -213,6 +224,16 @@
                                         <input type="text" name="totaldiskon" id="totaldiskon"
                                             class="form-control col-md-6 rupiah" value="0" readonly>
 
+                                        <label for="totalpotongancarabayar" class="col-md-6 col-form-label">Potongan
+                                            Pembayaran Cash</label>
+                                        <input type="text" name="totalpotongancarabayar" id="totalpotongancarabayar"
+                                            class="form-control col-md-6 rupiah" value="0" readonly>
+
+                                        <label for="totalpotonganpengiriman" class="col-md-6 col-form-label">Potongan
+                                            Pengiriman</label>
+                                        <input type="text" name="totalpotonganpengiriman" id="totalpotonganpengiriman"
+                                            class="form-control col-md-6 rupiah" value="0" readonly>
+
                                         <input type="hidden" name="ppnpersen" id="ppnpersen"
                                             value="{{ session()->get('ppn_penjualan') }}" readonly>
 
@@ -262,6 +283,8 @@
     var idpenjualan = "<?php echo $idpenjualan; ?>";
     var noinvoice = "<?php echo $noinvoice; ?>";
     var ppnpersen = parseInt("<?php echo $ppnpersen; ?>");
+    var setting_potongan_penjualan_cash = "{{ session('potongan_penjualan_cash') }}";
+    var setting_potongan_penjualan_angkut_sendiri = "{{ session('potongan_penjualan_angkut_sendiri') }}";
 
     var lInit = true;
 
@@ -310,6 +333,7 @@
                     $('#keterangan').val(rsPenjualan['keterangan']);
                     $('#ppnpersen').val(rsPenjualan['ppnpersen']);
                     $('#carabayar').val(rsPenjualan['carabayar']).trigger('change');
+                    $('#carapengiriman').val(rsPenjualan['carapengiriman']).trigger('change');
                     $('#nobilyetgiro').val(rsPenjualan['nobilyetgiro']);
 
                     setTimeout(function() {
@@ -337,10 +361,16 @@
                         }
                     }
 
-                    $('#totaldpp').val(totitik(rsPenjualan['totaldpp']));
-                    $('#totalppn').val(totitik(rsPenjualan['totalppn']));
-                    $('#totaldiskon').val(totitik(rsPenjualan['totaldiskon']));
-                    $('#totalinvoice').val(totitik(rsPenjualan['totalinvoice']));
+                    //set delay untuk menghindari trigger change
+                    setInterval(() => {
+                        $('#totalpotongancarabayar').val(totitik(rsPenjualan['totalpotongancarabayar']));
+                        $('#totalpotonganpengiriman').val(totitik(rsPenjualan['totalpotongan#totalpotonganpengiriman']));
+                        $('#totaldpp').val(totitik(rsPenjualan['totaldpp']));
+                        $('#totalppn').val(totitik(rsPenjualan['totalppn']));
+                        $('#totaldiskon').val(totitik(rsPenjualan['totaldiskon']));
+                        $('#totalinvoice').val(totitik(rsPenjualan['totalinvoice']));                        
+                    }, 500);
+
 
                     lInit = false;
                 })
@@ -392,6 +422,10 @@
         var totaldiskon = $("#totaldiskon").val();
         var biayapengiriman = $("#biayapengiriman").val();
         var totalinvoice = $("#totalinvoice").val();
+
+        var carapengiriman = $("#carapengiriman").val();
+        var totalpotongancarabayar = $("#totalpotongancarabayar").val();
+        var totalpotonganpengiriman = $("#totalpotonganpengiriman").val();
 
         var tableData = [];
         $("#tableDetail tbody tr").each(function() {
@@ -519,6 +553,9 @@
             "totaldiskon": totaldiskon,
             "biayapengiriman": biayapengiriman,
             "totalinvoice": totalinvoice,
+            "carapengiriman": carapengiriman,
+            "totalpotongancarabayar": totalpotongancarabayar,
+            "totalpotonganpengiriman": totalpotonganpengiriman,
             "isidatatable": isidatatable
         };
 
@@ -580,6 +617,12 @@
             addSelectOption('idjenispiutang', 'P02', 'Middle 45 Hari');
             $('#idjenispiutang').val('P02') // default midle 45 hari request agustus2025
         }
+
+        hitungTotalInvoice();
+    });
+
+    $(document).on('change', '#carapengiriman', function() {
+        hitungTotalInvoice();
     });
 
 
@@ -626,10 +669,21 @@
         var totalDiskon = 0;
         var totalinvoice = 0;;
         var totalhargasatuan = 0;
+        var totalpotongancarabayar =0;
+        var totalpotonganpengiriman = 0;
 
         for (var i = 0; i < arrTable.length; i++) {
             // totalDPP += parseInt(untitik(arrTable[i][8])) * parseInt(untitik(arrTable[i][10]));
             // totalPPN += parseInt(untitik(arrTable[i][8])) * parseInt(untitik(arrTable[i][11]));
+
+            if ($('#carabayar').val() == 'Transfer' || $('#carabayar').val() == 'Tunai') {
+                totalpotongancarabayar += parseInt(untitik(arrTable[i][8])) * parseInt(untitik(setting_potongan_penjualan_cash));
+            }
+
+            if ($('#carapengiriman').val() == 'Diambil Sendiri') {
+                totalpotonganpengiriman += parseInt(untitik(arrTable[i][8])) * parseInt(untitik(setting_potongan_penjualan_angkut_sendiri));
+            }
+
             totalDiskon += parseInt(untitik(arrTable[i][8])) * parseInt(untitik(arrTable[i][6]));
             totalinvoice += parseInt(untitik(arrTable[i][13]));
             totalhargasatuan += parseInt(untitik(arrTable[i][8])) * parseInt(untitik(arrTable[i][9]));
@@ -639,9 +693,11 @@
         var totalPPN = parseInt(untitik($('#totalppn').val()));
         var totalDPP =  totalhargasatuan - totalPPN;
         $('#totaldpp').val(totitik(totalDPP));
+        $('#totalpotongancarabayar').val(totitik(totalpotongancarabayar));
+        $('#totalpotonganpengiriman').val(totitik(totalpotonganpengiriman));
 
         $('#totaldiskon').val(totitik(totalDiskon));
-        $('#totalinvoice').val(totitik(totalinvoice));
+        $('#totalinvoice').val(totitik(parseInt(totalinvoice) - parseInt(totalpotongancarabayar) - parseInt(totalpotonganpengiriman)));
     }
 
     
