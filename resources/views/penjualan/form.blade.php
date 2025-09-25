@@ -207,7 +207,7 @@
                                         <label for="totalppn" class="col-md-6 col-form-label">PPN ({{
                                             session()->get('ppn_penjualan') }}%)</label>
                                         <input type="text" name="totalppn" id="totalppn"
-                                            class="form-control col-md-6 rupiah" value="0" readonly>
+                                            class="form-control col-md-6 rupiah" value="0">
 
                                         <label for="totaldiskon" class="col-md-6 col-form-label">Jumlah Diskon</label>
                                         <input type="text" name="totaldiskon" id="totaldiskon"
@@ -273,6 +273,8 @@
         $('#tableDetail thead tr :nth-child(5)').hide();
         $('#tableDetail thead tr :nth-child(6)').hide();
         $('#tableDetail thead tr :nth-child(7)').hide();
+        $('#tableDetail thead tr :nth-child(11)').hide();
+        $('#tableDetail thead tr :nth-child(12)').hide();
 
         $('#tableDetail tbody tr :nth-child(2)').hide();
         $('#tableDetail tbody tr :nth-child(3)').hide();
@@ -280,6 +282,8 @@
         $('#tableDetail tbody tr :nth-child(5)').hide();
         $('#tableDetail tbody tr :nth-child(6)').hide();
         $('#tableDetail tbody tr :nth-child(7)').hide();
+        $('#tableDetail tbody tr :nth-child(11)').hide();
+        $('#tableDetail tbody tr :nth-child(12)').hide();
 
         $('.select2').select2();
 
@@ -332,6 +336,12 @@
                                 rsDetail[i]['jenisdiskon'], rsDetail[i]['jumlahdiskon'], rsDetail[i]['diskonpersen1'], rsDetail[i]['diskonpersen2'], rsDetail[i]['diskonpersen3'], 0, 0);
                         }
                     }
+
+                    $('#totaldpp').val(totitik(rsPenjualan['totaldpp']));
+                    $('#totalppn').val(totitik(rsPenjualan['totalppn']));
+                    $('#totaldiskon').val(totitik(rsPenjualan['totaldiskon']));
+                    $('#totalinvoice').val(totitik(rsPenjualan['totalinvoice']));
+
                     lInit = false;
                 })
                 .fail(function() {
@@ -594,6 +604,10 @@
         }
     });
 
+    $(document).on('change', '#totalppn', function() {
+        hitungTotalInvoice();
+    });
+
     function hitungTotalInvoice()
     {
         var ppnpersen = parseInt($('#ppnpersen').val());
@@ -611,17 +625,21 @@
         var totalPPN = 0;
         var totalDiskon = 0;
         var totalinvoice = 0;;
+        var totalhargasatuan = 0;
 
         for (var i = 0; i < arrTable.length; i++) {
-            totalDPP += parseInt(untitik(arrTable[i][8])) * parseInt(untitik(arrTable[i][10]));
-            totalPPN += parseInt(untitik(arrTable[i][8])) * parseInt(untitik(arrTable[i][11]));
+            // totalDPP += parseInt(untitik(arrTable[i][8])) * parseInt(untitik(arrTable[i][10]));
+            // totalPPN += parseInt(untitik(arrTable[i][8])) * parseInt(untitik(arrTable[i][11]));
             totalDiskon += parseInt(untitik(arrTable[i][8])) * parseInt(untitik(arrTable[i][6]));
             totalinvoice += parseInt(untitik(arrTable[i][13]));
+            totalhargasatuan += parseInt(untitik(arrTable[i][8])) * parseInt(untitik(arrTable[i][9]));
         }
 
 
+        var totalPPN = parseInt(untitik($('#totalppn').val()));
+        var totalDPP =  totalhargasatuan - totalPPN;
         $('#totaldpp').val(totitik(totalDPP));
-        $('#totalppn').val(totitik(totalPPN));
+
         $('#totaldiskon').val(totitik(totalDiskon));
         $('#totalinvoice').val(totitik(totalinvoice));
     }

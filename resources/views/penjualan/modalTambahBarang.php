@@ -65,19 +65,23 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group row p-1">
+                                        <div class="form-group row" style="display: none;">
                                             <label for="jumlahdppsatuan" class="col-md-4 col-form-label p-1">Jumlah DPP</label>
                                             <div class="col-md-8 p-1">
                                                 <input type="hidden" name="jumlahdppsatuan" id="jumlahdppsatuan" class="form-control rupiah" value="0" readonly>
                                                 <input type="text" name="jumlahdppsatuan_display" id="jumlahdppsatuan_display" class="form-control rupiah" value="0" readonly>
                                             </div>
+                                        </div>
 
+                                        <div class="form-group row" style="display: none;">
                                             <label for="jumlahppnsatuan" class="col-md-4 col-form-label p-1">Jumlah PPN (<?php echo session()->get('ppn_penjualan') ?>%)</label>
                                             <div class="col-md-8 p-1">
                                                 <input type="hidden" name="jumlahppnsatuan" id="jumlahppnsatuan" class="form-control rupiah" value="0" readonly>
                                                 <input type="text" name="jumlahppnsatuan_display" id="jumlahppnsatuan_display" class="form-control rupiah" value="0" readonly>
                                             </div>
+                                        </div>
 
+                                        <div class="form-group row p-1">
                                             <label for="jumlahdiskonsatuan" class="col-md-4 col-form-label p-1">Jumlah Diskon</label>
                                             <div class="col-md-8 p-1">
                                                 <input type="hidden" name="jumlahdiskonsatuan" id="jumlahdiskonsatuan" class="form-control rupiah" value="0" readonly>
@@ -275,14 +279,18 @@
         });
 
         var totalSemua = parseInt(subtotalsemua);
+        var totalhargasatuan = parseInt(jumlahjual) * parseInt(hargasatuan);
         for (var i = 0; i < tableData.length; i++) {
             totalSemua += parseInt(untitik(tableData[i][11]));
+            totalhargasatuan += parseInt(untitik(arrTable[i][8])) * parseInt(untitik(arrTable[i][9]));
 
             if (idbarang == tableData[i][1]) {
                 swal("Informasi", "Data barang sudah ada!", "info");
                 return;
             }
         }
+        var totalPPN = parseInt((11 / 111) * (parseInt(totalhargasatuan)));
+        $('#totalppn').val(totitik(totalPPN));
 
 
         var jumlahdiskonText = '';
@@ -336,6 +344,8 @@
         $('#tableDetail thead tr :nth-child(5)').hide();
         $('#tableDetail thead tr :nth-child(6)').hide();
         $('#tableDetail thead tr :nth-child(7)').hide();
+        $('#tableDetail thead tr :nth-child(11)').hide();
+        $('#tableDetail thead tr :nth-child(12)').hide();
 
         $('#tableDetail tbody tr :nth-child(2)').hide();
         $('#tableDetail tbody tr :nth-child(3)').hide();
@@ -343,6 +353,8 @@
         $('#tableDetail tbody tr :nth-child(5)').hide();
         $('#tableDetail tbody tr :nth-child(6)').hide();
         $('#tableDetail tbody tr :nth-child(7)').hide();
+        $('#tableDetail tbody tr :nth-child(11)').hide();
+        $('#tableDetail tbody tr :nth-child(12)').hide();
 
         hitungTotalInvoice();
         kosongkanModal();
@@ -446,12 +458,18 @@
         var jumlahdppsatuan = parseInt(hargasatuan) - parseInt(jumlahppnsatuan);
 
 
-        $('#jumlahdppsatuan').val(numberWithCommas(jumlahdppsatuan));
-        $('#jumlahdppsatuan_display').val(numberWithCommas(parseInt(jumlahdppsatuan) * parseInt(jumlahjual)));
-        $('#jumlahppnsatuan').val(numberWithCommas(jumlahppnsatuan));
-        $('#jumlahppnsatuan_display').val(numberWithCommas(parseInt(jumlahppnsatuan) * parseInt(jumlahjual)));
+        // $('#jumlahdppsatuan').val(numberWithCommas(jumlahdppsatuan));
+        // $('#jumlahdppsatuan_display').val(numberWithCommas(parseInt(jumlahdppsatuan) * parseInt(jumlahjual)));
+        // $('#jumlahppnsatuan').val(numberWithCommas(jumlahppnsatuan));
+        // $('#jumlahppnsatuan_display').val(numberWithCommas(parseInt(jumlahppnsatuan) * parseInt(jumlahjual)));
+        // var subtotal = parseInt(jumlahjual) * parseInt(jumlahdppsatuan + jumlahppnsatuan - jumlahdiskonsatuan);
 
-        var subtotal = parseInt(jumlahjual) * parseInt(jumlahdppsatuan + jumlahppnsatuan - jumlahdiskonsatuan);
+        // ppn dan dpp dihitung dari total saja untuk menghindari selisih decimal. request agustus 2025
+        $('#jumlahdppsatuan').val(0);
+        $('#jumlahdppsatuan_display').val(0);
+        $('#jumlahppnsatuan').val(0);
+        $('#jumlahppnsatuan_display').val(0);
+        var subtotal = parseInt(jumlahjual) * parseInt(hargasatuan - jumlahdiskonsatuan);
         $('#subtotalsemua').val(numberWithCommas(subtotal));
     }
 
