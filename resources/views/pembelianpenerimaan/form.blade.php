@@ -46,20 +46,22 @@
                                         <div class="card-body">
                                             <div class="row">
 
-                                                
+
                                                 <div class="col-md-7 required">
                                                     <div class="form-group">
                                                         <label for="idsupplier">Nama Supplier</label>
-                                                        <select name="idsupplier" id="idsupplier" class="form-control searchSupplier"></select>
+                                                        <select name="idsupplier" id="idsupplier"
+                                                            class="form-control searchSupplier"></select>
                                                     </div>
-                                                </div> 
-                                                
+                                                </div>
+
                                                 <div class="col-md-5 required">
                                                     <div class="form-group">
                                                         <label for="idpembelian">No Purchase Order</label>
-                                                        <select name="idpembelian" id="idpembelian" class="form-control"></select>
+                                                        <select name="idpembelian" id="idpembelian"
+                                                            class="form-control"></select>
                                                     </div>
-                                                </div> 
+                                                </div>
 
                                                 <div class="col-md-4 required">
                                                     <div class="form-group">
@@ -82,12 +84,13 @@
                                                             class="form-control" value="{{ date('Y-m-d') }}">
                                                     </div>
                                                 </div>
-                                                                                         
+
 
                                                 <div class="col-md-4 required">
                                                     <div class="form-group">
                                                         <label for="carabayar">Cara Bayar Faktur</label>
-                                                        <select name="carabayar" id="carabayar" class="form-control select2">
+                                                        <select name="carabayar" id="carabayar"
+                                                            class="form-control select2">
                                                             <option value="">Pilih cara bayar...</option>
                                                             <option value="Tunai">Tunai</option>
                                                             <option value="Transfer">Transfer</option>
@@ -100,7 +103,8 @@
                                                 <div class="col-md-8 required" id="divBank" style="display:none;">
                                                     <div class="form-group">
                                                         <label for="idbank">Nama Bank</label>
-                                                        <select name="idbank" id="idbank" class="form-control searchBank">
+                                                        <select name="idbank" id="idbank"
+                                                            class="form-control searchBank">
                                                         </select>
                                                     </div>
                                                 </div>
@@ -124,7 +128,8 @@
                                                 <div class="col-md-12 required">
                                                     <div class="form-group">
                                                         <label for="idekspedisi">Nama Ekspedisi</label>
-                                                        <select name="idekspedisi" id="idekspedisi" class="form-control searchEkspedisi">
+                                                        <select name="idekspedisi" id="idekspedisi"
+                                                            class="form-control searchEkspedisi">
                                                         </select>
                                                     </div>
                                                 </div>
@@ -132,12 +137,13 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="keterangan">Keterangan</label>
-                                                        <textarea name="keterangan" id="keterangan" rows="3" class="form-control"
+                                                        <textarea name="keterangan" id="keterangan" rows="3"
+                                                            class="form-control"
                                                             placeholder="Keterangan Pembelian"></textarea>
                                                     </div>
                                                 </div>
 
-                                                
+
 
                                             </div>
                                         </div>
@@ -153,7 +159,9 @@
                                                     <h3 class="text-muted">Detail Faktur Penerimaan</h3>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <button class="btn btn-md btn-success float-right" id="btnTambahDetail" disabled><i class="fa fa-plus-circle mr-1"></i> Tambah Detail</button>
+                                                    <button class="btn btn-md btn-success float-right"
+                                                        id="btnTambahDetail" disabled><i
+                                                            class="fa fa-plus-circle mr-1"></i> Tambah Detail</button>
                                                 </div>
                                                 <div class="col-12 mt-3">
                                                     <div class="table-responsive">
@@ -168,15 +176,21 @@
                                                                     <th style="">diskonpersen3</th>
                                                                     <th style="">jumlahdiskon</th>
                                                                     <th style="">Nama Barang</th>
-                                                                    <th style="width: 5%; text-align: center;">Qty PO</th>
-                                                                    <th style="width: 5%; text-align: center;">Qty Masuk</th>
-                                                                    <th style="width: 10%; text-align: right;">Harga Satuan</th>
+                                                                    <th style="width: 5%; text-align: center;">Qty PO
+                                                                    </th>
+                                                                    <th style="width: 5%; text-align: center;">Qty Masuk
+                                                                    </th>
+                                                                    <th style="width: 10%; text-align: right;">Harga
+                                                                        Satuan</th>
                                                                     <th style="width: 10%; text-align: right;">DPP</th>
                                                                     <th style="width: 10%; text-align: right;">PPN</th>
-                                                                    <th style="width: 10%; text-align: right;">Discount</th>
-                                                                    <th style="width: 10%; text-align: right;">Sub Total</th>
+                                                                    <th style="width: 10%; text-align: right;">Discount
+                                                                    </th>
+                                                                    <th style="width: 10%; text-align: right;">Sub Total
+                                                                    </th>
                                                                     <th style="">iddetail</th>
-                                                                    <th style="width: 10%; text-align: center;">Aksi</th>
+                                                                    <th style="width: 10%; text-align: center;">Aksi
+                                                                    </th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -192,24 +206,29 @@
 
                                 </div>
                                 <div class="col-6">
-                                    
+
                                 </div>
                                 <div class="col-md-6">
                                     <div class="row">
                                         <label for="totaldpp" class="col-md-6 col-form-label">Jumlah DPP</label>
                                         <input type="text" name="totaldpp" id="totaldpp"
-                                        class="form-control col-md-6 rupiah" value="0" readonly>
-                                        
-                                        <input type="hidden" name="ppnpersen" id="ppnpersen" value="{{ session()->get('ppn_pembelian') }}" readonly>
-                                        <label for="totalppn" class="col-md-6 col-form-label">PPN (%)</label>
-                                        <input type="text" name="totalppn" id="totalppn"
                                             class="form-control col-md-6 rupiah" value="0" readonly>
 
-                                        <label for="totaldiskon" class="col-md-6 col-form-label">Jumlah Diskon</label>
-                                        <input type="text" name="totaldiskon" id="totaldiskon" class="form-control col-md-6 rupiah" value="0" readonly>
+                                        <input type="hidden" name="ppnpersen" id="ppnpersen"
+                                            value="{{ session()->get('ppn_pembelian') }}" readonly>
+                                        <label for="totalppn" class="col-md-6 col-form-label">PPN ({{
+                                            session()->get('ppn_pembelian') }}%)</label>
+                                        <input type="text" name="totalppn" id="totalppn"
+                                            class="form-control col-md-6 rupiah" value="0">
 
-                                        <label for="totalpotongan" class="col-md-6 col-form-label">Jumlah Potongan</label>
-                                        <input type="text" name="totalpotongan" id="totalpotongan" class="form-control col-md-6 rupiah" value="0">
+                                        <label for="totaldiskon" class="col-md-6 col-form-label">Jumlah Diskon</label>
+                                        <input type="text" name="totaldiskon" id="totaldiskon"
+                                            class="form-control col-md-6 rupiah" value="0" readonly>
+
+                                        <label for="totalpotongan" class="col-md-6 col-form-label">Jumlah
+                                            Potongan</label>
+                                        <input type="text" name="totalpotongan" id="totalpotongan"
+                                            class="form-control col-md-6 rupiah" value="0">
 
                                         <div class="col-md-12">
                                             <hr>
@@ -218,12 +237,13 @@
                                         <label for="totalfaktur" class="col-md-6 col-form-label">Total Faktur</label>
                                         <input type="text" name="totalfaktur" id="totalfaktur"
                                             class="form-control col-md-6 rupiah" value="0" readonly>
-                                        
-                                        <label for="biayapengiriman" class="col-md-6 col-form-label">Biaya Pengiriman</label>
+
+                                        <label for="biayapengiriman" class="col-md-6 col-form-label">Biaya
+                                            Pengiriman</label>
                                         <input type="text" name="biayapengiriman" id="biayapengiriman"
                                             class="form-control col-md-6 rupiah" value="0">
 
-                                        
+
                                     </div>
 
                                 </div>
@@ -266,6 +286,8 @@
         $('#tableDetail thead tr :nth-child(5)').hide();
         $('#tableDetail thead tr :nth-child(6)').hide();
         $('#tableDetail thead tr :nth-child(7)').hide();
+        $('#tableDetail thead tr :nth-child(12)').hide();
+        $('#tableDetail thead tr :nth-child(13)').hide();
         $('#tableDetail thead tr :nth-child(16)').hide(); //iddetail
 
         $('#tableDetail tbody tr :nth-child(2)').hide();
@@ -273,6 +295,9 @@
         $('#tableDetail tbody tr :nth-child(4)').hide();
         $('#tableDetail tbody tr :nth-child(5)').hide();
         $('#tableDetail tbody tr :nth-child(6)').hide();
+        $('#tableDetail tbody tr :nth-child(7)').hide();
+        $('#tableDetail tbody tr :nth-child(12)').hide();
+        $('#tableDetail tbody tr :nth-child(13)').hide();
         $('#tableDetail tbody tr :nth-child(16)').hide();
 
         $('.select2').select2();
@@ -745,20 +770,24 @@
 
         var totaldpp = 0;
         var totalDiskon = 0;
-        var totalPPN = 0;
-        
+        var totalPPN = parseInt(untitik($('#totalppn').val()));
+        var totalhargasatuan = 0;
         for (var i = 0; i < arrTable.length; i++) {
             var jumlahbeli = parseInt(untitik(arrTable[i][9]));
-            totaldpp += jumlahbeli * parseInt(untitik(arrTable[i][11]));
+            totalhargasatuan += jumlahbeli * parseInt(untitik(arrTable[i][10]));
+
+            // totaldpp += jumlahbeli * parseInt(untitik(arrTable[i][11]));
+            // totalPPN += jumlahbeli * parseInt(untitik(arrTable[i][12]));
             totalDiskon += jumlahbeli * parseInt(untitik(arrTable[i][6]));            
-            totalPPN += jumlahbeli * parseInt(untitik(arrTable[i][12]));
         }
+        totaldpp = totalhargasatuan - totalPPN;
+
         var totalpotongan = parseInt(untitik($('#totalpotongan').val()));
         var totalFaktur = totaldpp + totalPPN - totalDiskon - totalpotongan;
 
+
         $('#totaldpp').val(totitik(totaldpp));
         $('#totaldiskon').val(totitik(totalDiskon));
-        $('#totalppn').val(totitik(totalPPN));
         $('#totalfaktur').val(totitik(totalFaktur));
     }
 
@@ -796,6 +825,7 @@
             .done(function(response) {
                 console.log(response);
                 var rsDetail = response['rsPembelianDetail'];
+                var rsPembelian = response['rsPembelian'];
 
                 if (rsDetail.length > 0) {
                     for (var i = 0; i < rsDetail.length; i++) {
@@ -808,7 +838,14 @@
                         addTableRow(rsDetail[i]['id'], rsDetail[i]['idpembelian'], rsDetail[i]['idbarang'], rsDetail[i]['namabarang'], rsDetail[i][
                                             'jumlahbeli_po'
                                         ], rsDetail[i]['hargasatuan_po'], rsDetail[i]['hargadpp_po'], rsDetail[i]['jumlahppn_po'], rsDetail[i]['subtotalbeli_po'], jenisdiskon, jumlahdiskon, diskonpersen1, diskonpersen2, diskonpersen3, 0);
+
+                        
                     }
+
+                    setTimeout(() => {
+                        $('#totaldpp').val(totitik(rsPembelian['totaldpp_po']));
+                        $('#totalppn').val(totitik(rsPembelian['totalppn_po']));
+                    }, 500);
 
                     $('#btnTambahDetail').attr('disabled', false);
 

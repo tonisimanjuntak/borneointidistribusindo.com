@@ -67,7 +67,7 @@
                                             class="form-control searchPengguna"></select>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 pt-4">
                                     <button type="button" class="btn btn-success" id="btnCari"><i
                                             class="fa fa-search"></i> Cari</button>
                                     <button type="button" class="btn btn-primary" id="btnPrint"><i

@@ -233,8 +233,9 @@
                                 ], rsDetail[i]['hargasatuan_po'], rsDetail[i]['hargadpp_po'], rsDetail[i]['jumlahppn_po'], rsDetail[i]['subtotalbeli_po'], 0)
                         }
                     }
-                    setInterval(() => {
+                    setTimeout(() => {
                         $('#totalppn').val(totitik(rsPembelian['totalppn_po']));
+                        $('#totaldpp').val(totitik(rsPembelian['totaldpp_po']));
                     }, 500);
                 })
                 .fail(function() {
@@ -370,9 +371,9 @@
 
     })
 
-    // $(document).on('change', '#totalppn', function() {
-    //     hitungTotalFaktur();
-    // });
+    $(document).on('change', '#totalppn', function() {
+        hitungTotalFaktur();
+    });
 
     function hitungTotalFaktur()
     {

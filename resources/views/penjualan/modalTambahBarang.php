@@ -282,7 +282,7 @@
         var totalhargasatuan = parseInt(jumlahjual) * parseInt(hargasatuan);
         for (var i = 0; i < tableData.length; i++) {
             totalSemua += parseInt(untitik(tableData[i][11]));
-            totalhargasatuan += parseInt(untitik(arrTable[i][8])) * parseInt(untitik(arrTable[i][9]));
+            totalhargasatuan += parseInt(untitik(tableData[i][8])) * parseInt(untitik(tableData[i][9]));
 
             if (idbarang == tableData[i][1]) {
                 swal("Informasi", "Data barang sudah ada!", "info");

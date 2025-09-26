@@ -11,7 +11,7 @@ khusus bonus saless
 kuantiti x nilai bonus (300) - pph 21 (OK Tanpa pph)
 
 
-pajak pembelian dan penjualan tidak boleh di bulatkan, kecuali pas sudah total semua barang
+pajak pembelian dan penjualan tidak boleh di bulatkan, kecuali pas sudah total semua barang (OK)
 
 
 penjualan
@@ -21,7 +21,7 @@ jenis transaksi (credit/cash)= 500  (OK)
 cara angkot (antar/ambil)=1500  (OK)
 
 buku piutang
-penyesuaian harga mempengaruhi nilai pembayaran ?
+penyesuaian harga mempengaruhi nilai pembayaran (OK)
 
 
 penagihan piutang (berlaku ke SJA dan BID) (OK)
