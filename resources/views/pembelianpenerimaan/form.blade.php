@@ -210,6 +210,21 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="row">
+
+                                        <label for="totalhargasatuan" class="col-md-6 col-form-label">Jumlah
+                                            Faktur</label>
+                                        <input type="text" name="totalhargasatuan" id="totalhargasatuan"
+                                            class="form-control col-md-6 rupiah" value="0" readonly>
+
+                                        <label for="totaldiskon" class="col-md-6 col-form-label">Jumlah Diskon</label>
+                                        <input type="text" name="totaldiskon" id="totaldiskon"
+                                            class="form-control col-md-6 rupiah" value="0" readonly>
+
+                                        <label for="totalpotongan" class="col-md-6 col-form-label">Jumlah
+                                            Potongan</label>
+                                        <input type="text" name="totalpotongan" id="totalpotongan"
+                                            class="form-control col-md-6 rupiah" value="0">
+
                                         <label for="totaldpp" class="col-md-6 col-form-label">Jumlah DPP</label>
                                         <input type="text" name="totaldpp" id="totaldpp"
                                             class="form-control col-md-6 rupiah" value="0" readonly>
@@ -221,14 +236,6 @@
                                         <input type="text" name="totalppn" id="totalppn"
                                             class="form-control col-md-6 rupiah" value="0">
 
-                                        <label for="totaldiskon" class="col-md-6 col-form-label">Jumlah Diskon</label>
-                                        <input type="text" name="totaldiskon" id="totaldiskon"
-                                            class="form-control col-md-6 rupiah" value="0" readonly>
-
-                                        <label for="totalpotongan" class="col-md-6 col-form-label">Jumlah
-                                            Potongan</label>
-                                        <input type="text" name="totalpotongan" id="totalpotongan"
-                                            class="form-control col-md-6 rupiah" value="0">
 
                                         <div class="col-md-12">
                                             <hr>
@@ -358,7 +365,25 @@
         });
 
         $('#totalpotongan').on('change', function() {
-            hitungTotalFaktur();
+            hitungTotalFaktur();            
+        });
+
+        $('#totalppn').on('change', function() {
+            // total ppn dihitung kembali            
+            var totalhargasatuan = parseInt(untitik($('#totalhargasatuan').val()));
+            var totalDiskon = parseInt(untitik($('#totaldiskon').val()));
+            var totalpotongan = parseInt(untitik($('#totalpotongan').val()));
+            var totalPPN = parseInt(untitik($(this).val()));
+
+            var totalsebelumdiskon = totalhargasatuan - totalDiskon - totalpotongan;
+
+            totaldpp = totalsebelumdiskon - totalPPN;
+
+            var totalFaktur = totalsebelumdiskon - totalPPN;
+
+
+            $('#totaldpp').val(totitik(totaldpp));
+            $('#totalfaktur').val(totitik(totalFaktur));
         });
 
         $('#idpembelian').select2({
@@ -768,10 +793,13 @@
             arrTable.push(rowData);
         });
 
+        var totalsebelumdiskon = 0;
         var totaldpp = 0;
         var totalDiskon = 0;
-        var totalPPN = parseInt(untitik($('#totalppn').val()));
+        var totalPPN = 0;
+        var totalpotongan = parseInt(untitik($('#totalpotongan').val()));
         var totalhargasatuan = 0;
+
         for (var i = 0; i < arrTable.length; i++) {
             var jumlahbeli = parseInt(untitik(arrTable[i][9]));
             totalhargasatuan += jumlahbeli * parseInt(untitik(arrTable[i][10]));
@@ -780,10 +808,15 @@
             // totalPPN += jumlahbeli * parseInt(untitik(arrTable[i][12]));
             totalDiskon += jumlahbeli * parseInt(untitik(arrTable[i][6]));            
         }
-        totaldpp = totalhargasatuan - totalPPN;
+        $('#totalhargasatuan').val(totitik(totalhargasatuan));
 
-        var totalpotongan = parseInt(untitik($('#totalpotongan').val()));
-        var totalFaktur = totaldpp + totalPPN - totalDiskon - totalpotongan;
+        totalsebelumdiskon = totalhargasatuan - totalDiskon - totalpotongan;
+        var totalPPN = parseInt((11 / 111) * (parseInt(totalsebelumdiskon) ));
+        $('#totalppn').val(totitik(totalPPN));
+
+        totaldpp = totalsebelumdiskon - totalPPN;
+
+        var totalFaktur = totalsebelumdiskon - totalPPN;
 
 
         $('#totaldpp').val(totitik(totaldpp));

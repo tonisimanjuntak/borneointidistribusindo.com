@@ -239,11 +239,14 @@ class PenjualanController extends Controller
         if ($carabayar == 'Piutang') {
 
             //jika konsumen lewat jatuh tempo maka tidak diijinkan untuk melakukan piutang lagi
+            /*
             if ($this->model->adaPiutangKadaluarsa($idpenjualan)) {
                 return response()->json(array("msg" => "Ada piutang konsumen yang sudah melewati tanggal jatuh tempo! Konsumen tidak dapat membeli lagi dengan cara piutang!"));
             }
+            */
 
             //cek jika limit kredit tidak cukup
+            /*
             $rsKonsumen = Konsumen::find($idkonsumen);
             $sisakredit = $rsKonsumen->limitkredit - $rsKonsumen->jumlahpiutang;
             if (empty($idpenjualan)) { // tambah data
@@ -256,6 +259,7 @@ class PenjualanController extends Controller
                     return response()->json(array("msg" => "Kredit konsumen tidak mencukupi! Sisa kredit konsumen : Rp." . format_rupiah($sisakredit)));
                 }
             }
+            */
         }
 
 

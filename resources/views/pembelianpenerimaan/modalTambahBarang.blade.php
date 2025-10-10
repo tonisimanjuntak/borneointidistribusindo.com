@@ -426,16 +426,26 @@
             tableData.push(rowData);
         });
 
+        var totalpotongan = parseInt(untitik($('#totalpotongan').val()));
+        var totalhargasatuan = parseInt(untitik(jumlahbeli)) * parseInt(untitik(hargasatuan));
+        var totalDiskon = parseInt(untitik(jumlahbeli)) * parseInt(untitik(jumlahdiskon));
+
         var totalSemua = parseInt(subtotalbeli);
         for (var i = 0; i < tableData.length; i++) {
+            var qtyDetail = parseInt(untitik(tableData[i][9]));
+            totalhargasatuan += qtyDetail * parseInt(untitik(tableData[i][10]));
+            totalDiskon += qtyDetail * parseInt(untitik(tableData[i][6]));            
+
             totalSemua += parseInt(untitik(tableData[i][14]));
             if (idbarang == tableData[i][1]) {
                 swal("Informasi", "Data barang sudah ada!", "info");
                 return;
             }
         }
-        console.log("Total Semua = " + totalSemua);
-        var totalppn = parseInt((11 / 111) * (parseInt(totalSemua) ));
+        totalsebelumdiskon = totalhargasatuan - totalDiskon - totalpotongan;
+
+        console.log("Total sebelum diskon = " + totalsebelumdiskon);
+        var totalppn = parseInt((11 / 111) * (parseInt(totalsebelumdiskon) ));
         $('#totalppn').val(totitik(totalppn));
 
         $('#total').val(numberWithCommas(totalSemua));

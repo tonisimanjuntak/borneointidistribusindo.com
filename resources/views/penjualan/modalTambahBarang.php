@@ -278,18 +278,42 @@
             tableData.push(rowData);
         });
 
+        totalpotongancarabayar = 0;
+        totalpotonganpengiriman = 0;
+        totaldiskon = parseInt(jumlahjual) * parseInt(jumlahdiskon);
+
+        if ($('#carabayar').val() == 'Transfer' || $('#carabayar').val() == 'Tunai') {
+            totalpotongancarabayar += parseInt(untitik(jumlahjual)) * parseInt(untitik(setting_potongan_penjualan_cash));
+        }
+        if ($('#carapengiriman').val() == 'Diambil Sendiri') {
+            totalpotonganpengiriman += parseInt(untitik(jumlahjual)) * parseInt(untitik(setting_potongan_penjualan_angkut_sendiri));
+        }
+
         var totalSemua = parseInt(subtotalsemua);
         var totalhargasatuan = parseInt(jumlahjual) * parseInt(hargasatuan);
         for (var i = 0; i < tableData.length; i++) {
             totalSemua += parseInt(untitik(tableData[i][11]));
             totalhargasatuan += parseInt(untitik(tableData[i][8])) * parseInt(untitik(tableData[i][9]));
+            totaldiskon += parseInt(untitik(tableData[i][8])) * parseInt(untitik(tableData[i][6]));
+
+            if ($('#carabayar').val() == 'Transfer' || $('#carabayar').val() == 'Tunai') {
+                totalpotongancarabayar += parseInt(untitik(tableData[i][8])) * parseInt(untitik(setting_potongan_penjualan_cash));
+            }
+
+            if ($('#carapengiriman').val() == 'Diambil Sendiri') {
+                totalpotonganpengiriman += parseInt(untitik(tableData[i][8])) * parseInt(untitik(setting_potongan_penjualan_angkut_sendiri));
+            }
+
 
             if (idbarang == tableData[i][1]) {
                 swal("Informasi", "Data barang sudah ada!", "info");
                 return;
             }
         }
-        var totalPPN = parseInt((11 / 111) * (parseInt(totalhargasatuan)));
+
+        var totalsebelumdiskon = parseInt(totalhargasatuan) - parseInt(totaldiskon) - parseInt(totalpotongancarabayar) - parseInt(totalpotonganpengiriman);
+        console.log(totalsebelumdiskon);
+        var totalPPN = parseInt((11 / 111) * (parseInt(totalsebelumdiskon)));
         $('#totalppn').val(totitik(totalPPN));
 
 

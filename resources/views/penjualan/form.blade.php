@@ -211,14 +211,10 @@
                                         <input type="hidden" name="biayapengiriman" id="biayapengiriman"
                                             class="form-control col-md-6 rupiah" value="0">
 
-                                        <label for="totaldpp" class="col-md-6 col-form-label">Jumlah DPP</label>
-                                        <input type="text" name="totaldpp" id="totaldpp"
+                                        <label for="totalhargasatuan" class="col-md-6 col-form-label">Jumlah
+                                            Invoice</label>
+                                        <input type="text" name="totalhargasatuan" id="totalhargasatuan"
                                             class="form-control col-md-6 rupiah" value="0" readonly>
-
-                                        <label for="totalppn" class="col-md-6 col-form-label">PPN ({{
-                                            session()->get('ppn_penjualan') }}%)</label>
-                                        <input type="text" name="totalppn" id="totalppn"
-                                            class="form-control col-md-6 rupiah" value="0">
 
                                         <label for="totaldiskon" class="col-md-6 col-form-label">Jumlah Diskon</label>
                                         <input type="text" name="totaldiskon" id="totaldiskon"
@@ -233,6 +229,18 @@
                                             Pengiriman</label>
                                         <input type="text" name="totalpotonganpengiriman" id="totalpotonganpengiriman"
                                             class="form-control col-md-6 rupiah" value="0" readonly>
+
+
+                                        <label for="totaldpp" class="col-md-6 col-form-label">Jumlah DPP</label>
+                                        <input type="text" name="totaldpp" id="totaldpp"
+                                            class="form-control col-md-6 rupiah" value="0" readonly>
+
+                                        <label for="totalppn" class="col-md-6 col-form-label">PPN ({{
+                                            session()->get('ppn_penjualan') }}%)</label>
+                                        <input type="text" name="totalppn" id="totalppn"
+                                            class="form-control col-md-6 rupiah" value="0">
+
+
 
                                         <input type="hidden" name="ppnpersen" id="ppnpersen"
                                             value="{{ session()->get('ppn_penjualan') }}" readonly>
@@ -362,9 +370,9 @@
                     }
 
                     //set delay untuk menghindari trigger change
-                    setInterval(() => {
+                    setTimeout (() => {
                         $('#totalpotongancarabayar').val(totitik(rsPenjualan['totalpotongancarabayar']));
-                        $('#totalpotonganpengiriman').val(totitik(rsPenjualan['totalpotongan#totalpotonganpengiriman']));
+                        $('#totalpotonganpengiriman').val(totitik(rsPenjualan['totalpotonganpengiriman']));
                         $('#totaldpp').val(totitik(rsPenjualan['totaldpp']));
                         $('#totalppn').val(totitik(rsPenjualan['totalppn']));
                         $('#totaldiskon').val(totitik(rsPenjualan['totaldiskon']));
@@ -664,6 +672,7 @@
             arrTable.push(rowData);
         });
 
+        var totalsebelumdiskon = 0;
         var totalDPP = 0;
         var totalPPN = 0;
         var totalDiskon = 0;
@@ -690,14 +699,21 @@
         }
 
 
-        var totalPPN = parseInt(untitik($('#totalppn').val()));
-        var totalDPP =  totalhargasatuan - totalPPN;
-        $('#totaldpp').val(totitik(totalDPP));
+        
+
+
+        $('#totalhargasatuan').val(totitik(totalhargasatuan));
         $('#totalpotongancarabayar').val(totitik(totalpotongancarabayar));
         $('#totalpotonganpengiriman').val(totitik(totalpotonganpengiriman));
-
         $('#totaldiskon').val(totitik(totalDiskon));
-        $('#totalinvoice').val(totitik(parseInt(totalinvoice) - parseInt(totalpotongancarabayar) - parseInt(totalpotonganpengiriman)));
+
+        totalsebelumdiskon = parseInt(totalhargasatuan) - parseInt(totalDiskon) - parseInt(totalpotongancarabayar) - parseInt(totalpotonganpengiriman);
+
+        var totalPPN = parseInt(untitik($('#totalppn').val()));
+        var totalDPP =  totalsebelumdiskon;
+        $('#totaldpp').val(totitik(totalDPP));
+
+        $('#totalinvoice').val(totitik(parseInt(totalsebelumdiskon) + parseInt(totalPPN) ));
     }
 
     

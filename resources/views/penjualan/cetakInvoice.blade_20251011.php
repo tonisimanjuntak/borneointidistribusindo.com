@@ -201,7 +201,7 @@
                         @endphp
                         @foreach ($rsDetail as $row)
 
-                        <tr style="font-size: 16px;">
+                        <tr style="font-size: 12px;">
                             <td style="text-align: center;">{{ $no++ }}</td>
                             <td style="text-align: left;">{{ $row->namabarang }}</td>
                             <td style="text-align: center;">{{ $row->jumlahjual }}</td>
@@ -221,8 +221,8 @@
                         @endforeach
 
 
-                        @if ($no < 4) @for ($i=$no; $i <=4; $i++) <tr style="font-size: 16px;">
-                            <td style="text-align: center;">&nbsp;</td>
+                        @if ($no < 10) @for ($i=$no; $i <=10; $i++) <tr style="font-size: 12px;">
+                            <td style="text-align: center;">{{ $i }}</td>
                             <td style="text-align: left;"></td>
                             <td style="text-align: center;"></td>
                             <td style="text-align: right;"></td>
@@ -232,51 +232,41 @@
                             @endfor
                             @endif
 
-                            <tr style="font-size: 18px;;">
-                                <td style="text-align: left; font-size: 24px;" colspan="3" rowspan="7">
+                            <tr style="font-size: 14px;;">
+                                <td style="text-align: left;" colspan="3" rowspan="7">
                                     <strong>TERBILANG: </strong> {{ terbilang($rowPenjualan->totalinvoice) }} rupiah
                                 </td>
-                                <td style="text-align: right; font-weight: bold;" colspan="2">JUMLAH INVOICE</td>
+                                <td style="text-align: right; font-weight: bold;" colspan="2">JUMLAH DPP</td>
                                 <td style="text-align: right; font-weight: bold;">{{
-                                    format_rupiah($rowPenjualan->totalinvoice + $rowPenjualan->totaldiskon +
-                                    $rowPenjualan->totalpotongancarabayar + $rowPenjualan->totalpotonganpengiriman -
-                                    $rowPenjualan->totalppn ) }}</td>
+                                    format_rupiah($rowPenjualan->totaldpp) }}</td>
                             </tr>
-
-                            <tr style="font-size: 18px;">
+                            <tr style="font-size: 14px;">
+                                <td style="text-align: right; font-weight: bold;" colspan="2">PPN
+                                    ({{$rowPenjualan->ppnpersen}}%)</td>
+                                <td style="text-align: right; font-weight: bold;">{{
+                                    format_rupiah($rowPenjualan->totalppn) }}</td>
+                            </tr>
+                            <tr style="font-size: 14px;">
                                 <td style="text-align: right; font-weight: bold;" colspan="2">DISCOUNT</td>
                                 <td style="text-align: right; font-weight: bold;">{{
                                     format_rupiah($rowPenjualan->totaldiskon) }}</td>
                             </tr>
 
-                            <tr style="font-size: 18px;">
+                            <tr style="font-size: 14px;">
                                 <td style="text-align: right; font-weight: bold;" colspan="2">POTONGAN PEMBAYARAN CASH
                                 </td>
                                 <td style="text-align: right; font-weight: bold;">{{
                                     format_rupiah($rowPenjualan->totalpotongancarabayar) }}</td>
                             </tr>
 
-                            <tr style="font-size: 18px;">
+                            <tr style="font-size: 14px;">
                                 <td style="text-align: right; font-weight: bold;" colspan="2">POTONGAN PENGIRIMAN</td>
                                 <td style="text-align: right; font-weight: bold;">{{
                                     format_rupiah($rowPenjualan->totalpotonganpengiriman) }}</td>
                             </tr>
 
-                            <tr style="font-size: 18px;">
-                                <td style="text-align: right; font-weight: bold;" colspan="2">JUMLAH DPP</td>
-                                <td style="text-align: right; font-weight: bold;">{{
-                                    format_rupiah($rowPenjualan->totaldpp) }}</td>
-                            </tr>
-
-                            <tr style="font-size: 18px;">
-                                <td style="text-align: right; font-weight: bold;" colspan="2">PPN
-                                    ({{$rowPenjualan->ppnpersen}}%)</td>
-                                <td style="text-align: right; font-weight: bold;">{{
-                                    format_rupiah($rowPenjualan->totalppn) }}</td>
-                            </tr>
-
-                            <tr style="font-size: 18px;">
-                                <td style="text-align: right; font-weight: bold;" colspan="2">TOTAL INVOICE</td>
+                            <tr style="font-size: 14px;">
+                                <td style="text-align: right; font-weight: bold;" colspan="2">TOTAL</td>
                                 <td style="text-align: right; font-weight: bold;">{{
                                     format_rupiah($rowPenjualan->totalinvoice) }}</td>
                             </tr>
