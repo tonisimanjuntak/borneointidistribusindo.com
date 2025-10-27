@@ -32,7 +32,7 @@ class JenispiutangController extends Controller
         $formattedResults = $results->map(function ($item) {
             return [
                 'id' => $item->idjenispiutang,
-                'text' => $item->namajenispiutang . ' (' . $item->jatuhtempo . ' hari)',
+                'text' => $item->namajenispiutang,
             ];
         });
 

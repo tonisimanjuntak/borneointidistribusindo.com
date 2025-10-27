@@ -621,9 +621,9 @@
         }
 
         if (carabayar == 'Piutang') {
-            // $('#divJenisPiutang').show();
-            addSelectOption('idjenispiutang', 'P02', 'Middle 45 Hari');
-            $('#idjenispiutang').val('P02') // default midle 45 hari request agustus2025
+            $('#divJenisPiutang').show();
+            // addSelectOption('idjenispiutang', 'P02', 'Middle 45 Hari');
+            // $('#idjenispiutang').val('P02') // default midle 45 hari request agustus2025
         }
 
         hitungTotalInvoice();
