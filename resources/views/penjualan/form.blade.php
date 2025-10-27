@@ -707,9 +707,9 @@
         $('#totalpotonganpengiriman').val(totitik(totalpotonganpengiriman));
         $('#totaldiskon').val(totitik(totalDiskon));
 
-        totalsebelumdiskon = parseInt(totalhargasatuan) - parseInt(totalDiskon) - parseInt(totalpotongancarabayar) - parseInt(totalpotonganpengiriman);
-
         var totalPPN = parseInt(untitik($('#totalppn').val()));
+        totalsebelumdiskon = parseInt(totalhargasatuan) - parseInt(totalDiskon) - parseInt(totalpotongancarabayar) - parseInt(totalpotonganpengiriman) - totalPPN;
+
         var totalDPP =  totalsebelumdiskon;
         $('#totaldpp').val(totitik(totalDPP));
 
