@@ -313,7 +313,9 @@
 
         var totalsebelumdiskon = parseInt(totalhargasatuan) - parseInt(totaldiskon) - parseInt(totalpotongancarabayar) - parseInt(totalpotonganpengiriman);
         console.log(totalsebelumdiskon);
-        var totalPPN = parseInt((11 / 111) * (parseInt(totalsebelumdiskon)));
+        
+        //Math.ceil = desimal pembulatan keatas
+        var totalPPN = Math.ceil((11 / 111) * parseInt(totalsebelumdiskon));
         $('#totalppn').val(totitik(totalPPN));
 
 
