@@ -222,18 +222,27 @@
             @endif
 
             <tr class="fs-10">
-                <td colspan="3" rowspan="2" align="left">
+                <td colspan="3" rowspan="3" align="left">
                     <span class="terbilang"><strong>TERBILANG: </strong> {{
                         terbilang($rowPenjualan->totalinvoice) }} rupiah</span><br>
                 </td>
-                <td colspan="2" align="right" class="font-weight-bold">JUMLAH DPP</td>
+                <td colspan="2" align="right" class="font-weight-bold">JUMLAH KOTOR</td>
                 <td align="right" class="font-weight-bold">
-                    {{ format_rupiah($rowPenjualan->totaldpp) }}
+                    {{ format_rupiah($rowPenjualan->totaldpp + $rowPenjualan->totalppn + $rowPenjualan->totaldiskon +
+                    $rowPenjualan->totalpotongancarabayar + $rowPenjualan->totalpotonganpengiriman) }}
                 </td>
             </tr>
             <tr class="fs-10 font-weight-bold">
                 <td colspan="2" align="right">DISCOUNT</td>
                 <td align="right">{{ format_rupiah($rowPenjualan->totaldiskon) }}
+                </td>
+            </tr>
+            <tr class="fs-10">
+
+                <td colspan="2" align="right" class="font-weight-bold">POTONGAN</td>
+                <td align="right" class="font-weight-bold">
+                    {{ format_rupiah($rowPenjualan->totalpotongancarabayar +
+                    $rowPenjualan->totalpotonganpengiriman) }}
                 </td>
             </tr>
             <tr class="fs-10">
@@ -258,10 +267,8 @@
                     </table>
                     @endif
                 </td>
-                <td colspan="2" align="right" class="font-weight-bold">POTONGAN</td>
-                <td align="right" class="font-weight-bold">
-                    {{ format_rupiah($rowPenjualan->totalpotongancarabayar +
-                    $rowPenjualan->totalpotonganpengiriman) }}
+                <td colspan="2" align="right" class="font-weight-bold">JUMLAH DPP</td>
+                <td align="right" class="font-weight-bold">{{ format_rupiah($rowPenjualan->totaldpp) }}
                 </td>
             </tr>
             <tr class="fs-10">

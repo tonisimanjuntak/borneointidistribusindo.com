@@ -524,17 +524,60 @@ class PenjualanController extends Controller
         $rsDetail = $this->model->getDetail($idpenjualan);
 
         $rowKwitansi = $this->model->getKwitansiTerakhir($idpenjualan);
+        // dd($rowKwitansi);
 
         if (!$rowKwitansi) {
             echo 'Belum ada pembayaran...';
             exit();
         }
 
+        $tgljatuhtempo = '-';
+        if ($rsPenjualan->carabayar == "Piutang") {
+            $tgljatuhtempo = tglindonesia(App::createTglJatuhTempo($rsPenjualan->idjenispiutang, $rsPenjualan->tglinvoice));
+        }
+
+
         $data['idpenjualan'] = $idpenjualan;
         $data['rowPenjualan'] = $rsPenjualan;
         $data['rsDetail'] = $rsDetail;
         $data['rowKwitansi'] = $rowKwitansi;
-        return view('penjualan.cetakKwitansi', $data);
+        $data['tgljatuhtempo'] = $tgljatuhtempo;
+        $view = view('penjualan.cetakKwitansi', $data);
+
+        // Buat instance TCPDF
+        $pdf = new TCPDF();
+
+        // Set properti dokumen
+        $pdf->SetCreator(PDF_CREATOR);
+        $pdf->SetAuthor('TZ Developer');
+        $pdf->SetTitle('Kwitansi');
+        $pdf->SetSubject('Kwitansi');
+        $pdf->SetKeywords('TCPDF, PDF, laporan, Kwitansi');
+        $pdf->SetFont('times', '', 10);
+        $pdf->setPrintHeader(false);
+        $pdf->setPrintFooter(false);
+
+        // Atur ukuran kertas khusus (218 mm x 140 mm)
+        $customPaperSize = array(218, 140); // Lebar: 218 mm, Tinggi: 140 mm
+        $pdf->AddPage('L', $customPaperSize); // 'P' untuk portrait, 'L' untuk landscape
+
+        // Atur margin (1 cm = 10 mm)
+        $margin = 10; // 1 cm = 10 mm
+        $pdf->SetMargins($margin, $margin, $margin); // Margin kiri, atas, kanan
+        $pdf->SetAutoPageBreak(true, $margin);       // Margin bawah (untuk auto page break)
+
+        // Hilangkan padding internal cell
+        $pdf->SetCellPadding(0);
+
+        // Gambar garis bantu untuk debugging
+        // $pdf->Rect($margin, $margin, $pdf->getPageWidth() - $margin * 2, $pdf->getPageHeight() - $margin * 2);
+
+        // Tulis konten HTML ke dalam PDF
+        $pdf->writeHTML($view, true, false, true, false, '');
+
+        // Output PDF
+        $pdf->Output('Kwitansi.pdf', 'I');
+
     }
 
     public function searchInvoice(Request $request)
