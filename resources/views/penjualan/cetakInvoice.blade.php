@@ -226,7 +226,7 @@
                     <span class="terbilang"><strong>TERBILANG: </strong> {{
                         terbilang($rowPenjualan->totalinvoice) }} rupiah</span><br>
                 </td>
-                <td colspan="2" align="right" class="font-weight-bold">JUMLAH KOTOR</td>
+                <td colspan="2" align="right" class="font-weight-bold">JUMLAH</td>
                 <td align="right" class="font-weight-bold">
                     {{ format_rupiah($rowPenjualan->totaldpp + $rowPenjualan->totalppn + $rowPenjualan->totaldiskon +
                     $rowPenjualan->totalpotongancarabayar + $rowPenjualan->totalpotonganpengiriman) }}
@@ -299,9 +299,9 @@
         <td width="33%" align="center">Gudang</td>
     </tr>
     <tr>
-        <td height="30"></td>
-        <td height="30"></td>
-        <td height="30"></td>
+        <td height="20"></td>
+        <td height="20"></td>
+        <td height="20"></td>
     </tr>
     <tr>
         <td align="center">({!! str_repeat('&nbsp;', 30) !!})</td>

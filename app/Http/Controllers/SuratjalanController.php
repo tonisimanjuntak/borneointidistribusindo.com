@@ -352,8 +352,43 @@ class SuratjalanController extends Controller
             $data['rsDetail'] = $rsDetail;
             $data['rowSuratJalan'] = $rsSuratJalan;
             $data['rowKonsumen'] = $rowKonsumen;
-            return view('suratjalan.cetaksuratjalan_tanparincian', $data);
 
+            $view = view('suratjalan.cetaksuratjalan_tanparincian', $data);
+
+            // Buat instance TCPDF
+            $pdf = new TCPDF();
+
+            // Set properti dokumen
+            $pdf->SetCreator(PDF_CREATOR);
+            $pdf->SetAuthor('TZ Developer');
+            $pdf->SetTitle('SuratJalan');
+            $pdf->SetSubject('SuratJalan');
+            $pdf->SetKeywords('TCPDF, PDF, laporan, SuratJalan');
+            $pdf->SetFont('times', '', 10);
+            $pdf->setPrintHeader(false);
+            $pdf->setPrintFooter(false);
+
+            // Atur ukuran kertas khusus (218 mm x 140 mm)
+            $customPaperSize = array(218, 140); // Lebar: 218 mm, Tinggi: 140 mm
+            $pdf->AddPage('L', $customPaperSize); // 'P' untuk portrait, 'L' untuk landscape
+
+            // Atur margin (1 cm = 10 mm)
+            $margin = 10; // 1 cm = 10 mm
+            $pdf->SetMargins($margin, $margin, $margin); // Margin kiri, atas, kanan
+            $pdf->SetAutoPageBreak(true, $margin);       // Margin bawah (untuk auto page break)
+
+            // Hilangkan padding internal cell
+            $pdf->SetCellPadding(0);
+
+            // Gambar garis bantu untuk debugging
+            // $pdf->Rect($margin, $margin, $pdf->getPageWidth() - $margin * 2, $pdf->getPageHeight() - $margin * 2);
+
+            // Tulis konten HTML ke dalam PDF
+            $pdf->writeHTML($view, true, false, true, false, '');
+
+            // Output PDF
+            $pdf->Output('SuratJalan.pdf', 'I');
+            
         }else{
             
             $rsRincian = $this->model->getDetailRincian($idsuratjalan);
@@ -364,7 +399,42 @@ class SuratjalanController extends Controller
             $data['rowSuratJalan'] = $rsSuratJalan;
             $data['rsRincian'] = $rsRincian;
             $data['rowKonsumen'] = $rowKonsumen;
-            return view('suratjalan.cetaksuratjalan', $data);            
+
+            $view = view('suratjalan.cetaksuratjalan', $data);
+
+            // Buat instance TCPDF
+            $pdf = new TCPDF();
+
+            // Set properti dokumen
+            $pdf->SetCreator(PDF_CREATOR);
+            $pdf->SetAuthor('TZ Developer');
+            $pdf->SetTitle('SuratJalan');
+            $pdf->SetSubject('SuratJalan');
+            $pdf->SetKeywords('TCPDF, PDF, laporan, SuratJalan');
+            $pdf->SetFont('times', '', 10);
+            $pdf->setPrintHeader(false);
+            $pdf->setPrintFooter(false);
+
+            // Atur ukuran kertas khusus (218 mm x 140 mm)
+            $customPaperSize = array(218, 140); // Lebar: 218 mm, Tinggi: 140 mm
+            $pdf->AddPage('L', $customPaperSize); // 'P' untuk portrait, 'L' untuk landscape
+
+            // Atur margin (1 cm = 10 mm)
+            $margin = 10; // 1 cm = 10 mm
+            $pdf->SetMargins($margin, $margin, $margin); // Margin kiri, atas, kanan
+            $pdf->SetAutoPageBreak(true, $margin);       // Margin bawah (untuk auto page break)
+
+            // Hilangkan padding internal cell
+            $pdf->SetCellPadding(0);
+
+            // Gambar garis bantu untuk debugging
+            // $pdf->Rect($margin, $margin, $pdf->getPageWidth() - $margin * 2, $pdf->getPageHeight() - $margin * 2);
+
+            // Tulis konten HTML ke dalam PDF
+            $pdf->writeHTML($view, true, false, true, false, '');
+
+            // Output PDF
+            $pdf->Output('SuratJalan.pdf', 'I');
         }
 
 

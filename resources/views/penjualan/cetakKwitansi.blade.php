@@ -212,11 +212,10 @@
                         </tbody>
                     </table>
                 </td>
-                <td style="text-align: right; font-weight: bold;" colspan="2">JUMLAH KWITANSI</td>
+                <td style="text-align: right; font-weight: bold;" colspan="2">JUMLAH</td>
                 <td style="text-align: right; font-weight: bold;">{{
-                    format_rupiah($rowPenjualan->totalinvoice - $rowPenjualan->totalppn +
-                    $rowPenjualan->totaldiskon + $rowPenjualan->totalpotongancarabayar +
-                    $rowPenjualan->totalpotonganpengiriman) }}</td>
+                    format_rupiah($rowPenjualan->totaldpp + $rowPenjualan->totalppn + $rowPenjualan->totaldiskon +
+                    $rowPenjualan->totalpotongancarabayar + $rowPenjualan->totalpotonganpengiriman) }}</td>
             </tr>
 
             <tr class="fs-10 font-weight-bold">

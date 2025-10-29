@@ -1,244 +1,228 @@
-<!DOCTYPE html>
-<html lang="en">
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoice</title>
+    table {
+        margin: 0;
+        padding: 0;
+        border-collapse: collapse;
+    }
 
-    <link rel="stylesheet" href="{{ asset('') }}assets/bootstrap4/bootstrap.min.css">
-    <script src="{{ asset('') }}assets/bootstrap4/jquery-3.2.1.slim.min.js"></script>
-    <script src="{{ asset('') }}assets/bootstrap4/popper.min.js"></script>
-    <script src="{{ asset('') }}assets/bootstrap4/bootstrap.min.js"></script>
+    td,
+    th {
+        margin: 0;
+        padding: 0;
+    }
 
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
 
+    .fs-8 {
+        font-size: 8px;
+    }
 
-        .nama-usaha h1 {
-            font-size: 45px;
-            font-weight: bold;
-        }
+    .fs-9 {
+        font-size: 9px;
+    }
 
-        .nama-usaha h4 {
-            font-size: 16px;
-            font-weight: bold;
-        }
+    .fs-10 {
+        font-size: 10px;
+    }
 
-        .nama-usaha span {
-            font-size: 12px;
-            display: block;
-        }
+    .fs-11 {
+        font-size: 11px;
+    }
 
-        .info-konsumen {
-            margin-top: 20px;
-        }
+    .fs-12 {
+        font-size: 12px;
+    }
 
-        .info-konsumen .kepada {
-            font-size: 16px;
-            font-weight: bold;
-        }
+    .fs-13 {
+        font-size: 13px;
+    }
 
-        .info-konsumen .nama {
-            font-size: 20px;
-            font-weight: bold;
-        }
+    .fs-14 {
+        font-size: 14px;
+    }
 
-        .info-keterangan {
-            margin-top: 20px;
-        }
-    </style>
-</head>
+    .fs-15 {
+        font-size: 15px;
+    }
 
-<body onload="window.print()">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="row">
-                    <div class="col-8">
-                        <div class="row nama-usaha">
-                            <div class="col-5">
-                                <h4>{{ session()->get('usaha_nama') }}</h4>
-                                <span>{{ session()->get('usaha_alamat') }}</span>
-                                <span>No Telepon. {{ session()->get('usaha_telepon')}}</span>
-                            </div>
-                            <div class="col-7 text-center">
-                                <h1>SURAT JALAN</h1>
-                                <h5>No. {{ $rowSuratJalan->idsuratjalan }}</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <table style="border: none;">
-                            <body>
-                                <tr>
-                                    <td style="border: none; width: 30%;">Tgl. Kirim</td>
-                                    <td style="border: none; width: 5%;">:</td>
-                                    <td style="border: none; width: 65%;">
-                                        {{ tglindonesia($rowSuratJalan->tglsuratjalan) }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="border: none; width: 30%;">No Invoice</td>
-                                    <td style="border: none; width: 5%;">:</td>
-                                    <td style="border: none; width: 65%;">
-                                        {{ $rowSuratJalan->daftarnoinvoice }}
-                                    </td>
-                                </tr>
-                            </body>
-                        </table>
-                    </div>
-                </div>
-            </div>
+    .fs-16 {
+        font-size: 16px;
+    }
 
-            <div class="col-8 info-konsumen mb-3">
-                <div class="row">
-                    <div class="col-12">
-                        <span class="kepada">Kepada:</span>
-                    </div>
-                    <div class="col-12">
-                        <span class="nama">{{ $rowSuratJalan->namakonsumen }}</span>
-                    </div>
-                    <div class="col-12">
-                        <table border="0" cellpadding="0">
-                            <tbody>
-                                <tr>
-                                    <td style="width: 15%;">Alamat</td>
-                                    <td style="width: 5%; text-align: center;">:</td>
-                                    <td style="width: 80%;">{{ $rowKonsumen->alamatkonsumen }}</td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 15%;">No. Telp/ Email</td>
-                                    <td style="width: 5%; text-align: center;">:</td>
-                                    <td style="width: 80%;">{{ $rowKonsumen->notelpkonsumen . ' / ' . $rowKonsumen->emailkonsumen }}</td>
-                                </tr>
-                            </tbody>
+    .fs-17 {
+        font-size: 17px;
+    }
 
-                        </table>
-                    </div>
-                </div>
-            </div>
+    .fs-18 {
+        font-size: 18px;
+    }
 
-            <div class="col-4 info-keterangan" style="display: none;">
-                <div class="row">
-                    <div class="col-12">
+    .mt-1 {
+        margin-top: 10px;
+    }
 
-                    </div>
-                    <div class="col-12 mt-3">
-                        <span>
-                            Keterangan : 
-                            @if (!empty($rowKonsumen->keterangan))
-                                {{ $rowSuratJalan->keterangan }}
-                            @else
-                                -
-                            @endif
-                        </span>                    
-                    </div>
-                </div>
-                
-            </div>
+    .mt-2 {
+        margin-top: 20px;
+    }
+
+    .mt-3 {
+        margin-top: 30px;
+    }
+
+    .mt-4 {
+        margin-top: 40px;
+    }
+
+    .mt-5 {
+        margin-top: 50px;
+    }
+
+    .font-weight-bold {
+        font-weight: bold;
+    }
+</style>
 
 
-            <div class="col-12 mt-3">
-                <h5>Detail Transaksi:</h5>
-                <table border="1" cellpadding="5" width="100%">
-                    <thead>
-                        <tr style="font-size: 14px; font-weight: bold;">
-                            <th width="10%" style="text-align:center;">NO</th>
-                            <th width="20%" style="text-align:center;">Jumlah</th>
-                            <th width="70%" style="text-align:center;">Keterangan</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @php
-                        $no = 1;
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td width="35%" class="fs-10">
+            <table width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td class="font-weight-bold">{{ session()->get('usaha_nama') }}</td>
+                </tr>
+                <tr>
+                    <td>{{ session()->get('usaha_alamat') }} No Telepon. {{ session()->get('usaha_telepon')}}
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td width="35%" align="center">
+            <span class="fs-16 font-weight-bold">SURAT JALAN</span><br>
+            <span class="fs-12 font-weight-bold">No. {{ $rowSuratJalan->idsuratjalan }}</span>
+        </td>
+        <td width="30%">
+            <table width="100%" cellpadding="0">
+                <tr>
+                    <td width="35%">Tgl. Kirim</td>
+                    <td width="5%">:</td>
+                    <td width="60%">{{ tglindonesia($rowSuratJalan->tglsuratjalan) }}</td>
+                </tr>
+                <tr>
+                    <td>No. Invoice</td>
+                    <td>:</td>
+                    <td>{{ $rowSuratJalan->daftarnoinvoice }}</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
 
-                        @endphp
-                        @foreach ($rsDetail as $row)
-                        
-                            <tr style="font-size: 12px;">
-                                <td style="text-align: center;">{{ $no++ }}</td>
-                                <td style="text-align: center;">{{ $row->jumlahjual  }}</td>
-                                <td style="text-align: left;">{{ $row->namabarang }}</td>
-                            </tr>
+<table width="100%">
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+</table>
 
-                        @endforeach
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tbody>
+        <!-- Informasi Konsumen -->
+        <tr>
+            <td width="15%">Kepada:</td>
+            <td width="5%" style="text-align: center;">:</td>
+            <td width="80%">{{ $rowSuratJalan->namakonsumen }}
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 15%;">Alamat</td>
+            <td style="width: 5%; text-align: center;">:</td>
+            <td style="width: 80%;">{{ $rowKonsumen->alamatkonsumen }}</td>
+        </tr>
+        <tr>
+            <td style="width: 15%;">No. Telp/ Email</td>
+            <td style="width: 5%; text-align: center;">:</td>
+            <td style="width: 80%;">{{ $rowKonsumen->notelpkonsumen . ' / ' .
+                $rowKonsumen->emailkonsumen }}</td>
+        </tr>
+    </tbody>
+</table>
 
+<table width="100%">
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+</table>
 
-                            @if ($no < 10)
-                                @for ($i=$no; $i <=10; $i++)
-                                <tr style="font-size: 12px;">
-                                    <td style="text-align: center;">{{ $i }}</td>
-                                    <td style="text-align: left;"></td>
-                                    <td style="text-align: center;"></td>
-                                </tr>
-                                @endfor
-                            @endif
+<table border="1" cellpadding="3" cellspacing="0" width="100%">
+    <thead>
+        <tr class="fs-10 font-weight-bold">
+            <th width="10%" style="text-align:center;">NO</th>
+            <th width="20%" style="text-align:center;">Jumlah</th>
+            <th width="70%" style="text-align:center;">Keterangan</th>
+        </tr>
+    </thead>
+    <tbody>
+        @php
+        $no = 1;
+        @endphp
+        @foreach ($rsDetail as $row)
+        <tr class="fs-11">
+            <td width="10%" style="text-align: center;">{{ $no++ }}</td>
+            <td width="20%" style="text-align: center;">{{ $row->jumlahjual }}</td>
+            <td width="70%" style="text-align: left;">{{ $row->namabarang }}</td>
+        </tr>
+        @endforeach
 
-                                
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-3 text-center mt-3">
-                <div class="row">
-                    <div class="col-12">
-                        Diterima oleh
-                    </div>
-                    <div class="col-12 mt-5">
-                        @php
-                        echo '(' . str_repeat('&nbsp;', 30) . ')';
-                        @endphp
-                    </div>
-                </div>
-            </div>
+        @if ($no < 6) @for ($i=$no; $i <=6; $i++) <tr class="fs-10">
+            <td width="10%" style="text-align: center;"></td>
+            <td width="20%" style="text-align: center;"></td>
+            <td width="70%" style="text-align: left;"></td>
+            </tr>
+            @endfor
+            @endif
+    </tbody>
+</table>
 
-            <div class="col-3 text-center mt-3">
-                <div class="row">
-                    <div class="col-12">
-                        Driver/Supir
-                    </div>
-                    <div class="col-12 mt-5">
-                        @php
-                        echo '(' . str_repeat('&nbsp;', 30) . ')';
-                        @endphp
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-3 text-center mt-3">
-                <div class="row">
-                    <div class="col-12">
-                        Gudang
-                    </div>
-                    <div class="col-12 mt-5">
-                        @php
-                        echo '(' . str_repeat('&nbsp;', 30) . ')';
-                        @endphp
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-3 text-center mt-3">
-                <div class="row">
-                    <div class="col-12">
-                        Hormat Kami
-                    </div>
-                    <div class="col-12 mt-5">
-                        @php
-                        echo '(' . str_repeat('&nbsp;', 30) . ')';
-                        @endphp
-                    </div>
-                </div>
-            </div>
-
-            
-        </div>
-    </div>
+<table width="100%">
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+</table>
 
 
-</body>
-
-</html>
+<!-- Tanda Tangan -->
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+    <tr>
+        <td width="25%" align="center">
+            Diterima oleh<br><br><br><br>
+            @php
+            echo '(' . str_repeat('&nbsp;', 30) . ')';
+            @endphp
+        </td>
+        <td width="25%" align="center">
+            Driver/Supir<br><br><br><br>
+            @php
+            echo '(' . str_repeat('&nbsp;', 30) . ')';
+            @endphp
+        </td>
+        <td width="25%" align="center">
+            Gudang<br><br><br><br>
+            @php
+            echo '(' . str_repeat('&nbsp;', 30) . ')';
+            @endphp
+        </td>
+        <td width="25%" align="center">
+            Hormat Kami<br><br><br><br>
+            @php
+            echo '(' . str_repeat('&nbsp;', 30) . ')';
+            @endphp
+        </td>
+    </tr>
+</table>
