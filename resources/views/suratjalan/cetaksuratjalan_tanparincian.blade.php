@@ -93,13 +93,14 @@
 
 <table width="100%" cellpadding="0" cellspacing="0" border="0">
     <tr>
-        <td width="35%" class="fs-10">
+        <td width="35%">
             <table width="100%" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td class="font-weight-bold">{{ session()->get('usaha_nama') }}</td>
+                    <td class="fs-10 font-weight-bold">{{ session()->get('usaha_nama') }}</td>
                 </tr>
                 <tr>
-                    <td>{{ session()->get('usaha_alamat') }} No Telepon. {{ session()->get('usaha_telepon')}}
+                    <td class="fs-8">{{ session()->get('usaha_alamat') }} No Telepon. {{
+                        session()->get('usaha_telepon')}}
                     </td>
                 </tr>
             </table>
