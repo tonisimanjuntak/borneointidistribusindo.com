@@ -6,7 +6,8 @@ pembelian total faktur salah.
 
 SUKSESTAMA
 ==========
-PPN PEMBELIAN DAN PENJUALAN BESERTA DPP DLL
-migrasi wilayah dari BID
-bersihin semua transaksi kecuali pengguna dan barang
-copykan otorisasi pengguna dari BID
+OK PPN PEMBELIAN DAN PENJUALAN BESERTA DPP DLL
+OK migrasi wilayah dari BID
+OK bersihin semua transaksi kecuali pengguna dan barang
+OK copykan otorisasi pengguna dari BID
+OK Riwayat aktifitas dari BID
