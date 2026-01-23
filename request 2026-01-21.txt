@@ -1,0 +1,12 @@
+BID
+==================
+cetak invoice, ttd Gudang ganti jadi hormat kami
+pembelian total faktur salah.
+
+
+SUKSESTAMA
+==========
+PPN PEMBELIAN DAN PENJUALAN BESERTA DPP DLL
+migrasi wilayah dari BID
+bersihin semua transaksi kecuali pengguna dan barang
+copykan otorisasi pengguna dari BID
