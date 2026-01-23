@@ -297,7 +297,7 @@
     <tr class="fs-10">
         <td width="33%" align="center">Tanda Terima</td>
         <td width="33%" align="center">Driver/Supir</td>
-        <td width="33%" align="center">Gudang</td>
+        <td width="33%" align="center">Hormat Kami</td>
     </tr>
     <tr>
         <td height="20"></td>
