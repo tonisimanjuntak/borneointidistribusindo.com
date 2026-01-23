@@ -437,6 +437,7 @@
             totalDiskon += qtyDetail * parseInt(untitik(tableData[i][6]));            
 
             totalSemua += parseInt(untitik(tableData[i][14]));
+            console.log( tableData[i]);
             if (idbarang == tableData[i][1]) {
                 swal("Informasi", "Data barang sudah ada!", "info");
                 return;

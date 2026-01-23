@@ -816,7 +816,7 @@
 
         totaldpp = totalsebelumdiskon - totalPPN;
 
-        var totalFaktur = totalsebelumdiskon - totalPPN;
+        var totalFaktur = totalsebelumdiskon;
 
 
         $('#totaldpp').val(totitik(totaldpp));
